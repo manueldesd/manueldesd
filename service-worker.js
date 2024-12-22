@@ -52,7 +52,7 @@ self.addEventListener('fetch', (event) => {
       return fetch(event.request).catch((error) => {
         // If network fails, you can serve a fallback page (e.g., offline.html)
         console.log('Network request failed. Serving fallback.');
-        return caches.match('/index.html'); // Serve the cached index page as fallback
+        return caches.match('index.html'); // Serve the cached index page as fallback
       });
     })
   );
