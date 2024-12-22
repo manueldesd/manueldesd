@@ -1,5 +1,5 @@
-const CACHE_NAME = 'manuel-cache-v2'; // Increment version when updating files
-const FILES_TO_CACHE = [
+const CACHE_NAME = 'manuel-cache-v1'; // Increment version when updating files
+const urlsToCache = [
   '/index.html',
   '/style.css',
   '/script.js',
@@ -8,27 +8,24 @@ const FILES_TO_CACHE = [
   '/'            // Ensure root directory is cached for offline use
 ];
 
-// Install service worker and cache assets
+/// Install service worker and cache assets
 self.addEventListener('install', (event) => {
-  console.log('Service Worker installing...');
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('Caching files...');
-      return cache.addAll(FILES_TO_CACHE); // Use FILES_TO_CACHE instead of urlsToCache
+      console.log('Opened cache');
+      return cache.addAll(urlsToCache);
     })
   );
 });
 
-// Activate service worker and clear old caches
+// Activate the service worker and clear old caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker activated.');
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (!cacheWhitelist.includes(cacheName)) {
-            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -37,11 +34,11 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch assets from cache, fallback to network if not available
+// Fetch assets from cache, and if not found, fetch from network
 self.addEventListener('fetch', (event) => {
-  console.log('Fetching:', event.request.url);
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
+      // Return the cached response if found, or fetch from the network
       return cachedResponse || fetch(event.request);
     })
   );
