@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   revealSections.forEach(section => revealObserver.observe(section));
 });
-
 function toggleMenu() {
   const menu = document.getElementById('navMenu');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
