@@ -1,43 +1,26 @@
-// Function to change message when button is clicked
-function changeMessage() {
-    document.getElementById('message').textContent = "You clicked the button!";
-}
-
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-            .then((registration) => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-                console.log('Service Worker registration failed:', error);
-            });
-    });
-}
-
-// Add to Home Screen prompt
+// Handle the "beforeinstallprompt" event to show the install button
 let deferredPrompt;
-const installButton = document.createElement('button');
-installButton.textContent = 'Install App';
-document.body.appendChild(installButton);
+const installButton = document.getElementById('install-button');
 
 window.addEventListener('beforeinstallprompt', (event) => {
+    // Prevent the default install prompt
     event.preventDefault();
-    // Save the event so it can be triggered later
     deferredPrompt = event;
-    installButton.style.display = 'block'; // Show install button
-});
 
-installButton.addEventListener('click', () => {
-    // Show the install prompt
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-        } else {
-            console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
+    // Show the install button
+    installButton.style.display = 'block';
+
+    installButton.addEventListener('click', () => {
+        // Show the install prompt
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+        });
     });
 });
