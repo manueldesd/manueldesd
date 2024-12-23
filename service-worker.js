@@ -6,7 +6,8 @@ const FILES_TO_CACHE = [
   '/script.js',
   '/image.jpg',
   '/icon.png',
-  '/manifest.json' // Cache the manifest as well
+  '/manifest.json',
+  'https://manueldesd.github.io/manueldesd' // Add your GitHub Pages URL here
 ];
 
 // Install service worker and cache essential files
