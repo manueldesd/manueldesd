@@ -8,15 +8,7 @@
     <link rel="icon" href="icon.png" type="image/png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ffffff">
-    <script>
-        const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      
-        if (prefersDarkMode) {
-          document.body.style.backgroundColor = 'white';
-          document.body.style.color = 'black';
-        }
-      </script>
-      
+    
 </head>
 <body>
      <!-- Hamburger Menu -->
@@ -62,7 +54,10 @@
            text-align: left;
         }
     </style>
-    
+    <div class="buttons-container">
+        <button class="button" ><a href="fruit.html">FJ</button>
+        <button class="button" ><a href="carrot.html">Carrot Cake</button>
+    </div>
     
     <hr class="line">
     <br>
@@ -84,5 +79,14 @@
             });
         }
     </script>
+    <script>
+        const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      
+        if (prefersDarkMode) {
+          document.body.style.backgroundColor = 'white';
+          document.body.style.color = 'black';
+        }
+      </script>
+      
 </body>
 </html>

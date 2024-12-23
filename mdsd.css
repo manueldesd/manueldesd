@@ -35,38 +35,6 @@ html {
     border: solid 1px black;
 }
 
-th {
-    font-weight: bold;
-    color: black;
-    padding: 4px;
-    text-align: center;
-    border-top: dotted 1px black;
-    border-bottom: dotted 1px black;
-}
-
-td {
-    padding: 4px;
-    text-align: center;
-    color: black;
-    /* Light mode table data text color */
-}
-
-input {
-    font-size: medium;
-    width: 80px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: dotted 1px black;
-    text-align: center;
-    color: black;
-    background-color: white;
-}
-
-input:focus {
-    border-bottom: dotted 2px orangered;
-    outline: none;
-}
 
 .box {
     width: 100%;
@@ -74,8 +42,7 @@ input:focus {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #f0f0f0;
-    /* Fallback background color */
+  
 }
 
 .buttons-container {
@@ -212,3 +179,7 @@ h2 {
   .nav-menu ul li a:hover {
     color: #03f4fc;
   }
+  a {
+    text-decoration: none;
+    color: black;
+}

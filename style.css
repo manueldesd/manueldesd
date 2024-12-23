@@ -23,6 +23,21 @@ html {
   border: solid 1px black;
 }
 
+th {
+  font-weight: bold;
+  color: black !important;
+  padding: 4px;
+  text-align: center;
+  border-top: dotted 1px black;
+  border-bottom: dotted 1px black;
+}
+
+td {
+  padding: 4px;
+  text-align: center;
+  color: black !important; /* Light mode table data text color */
+}
+
 input {
   font-size: medium;
   width: 80px;
@@ -207,7 +222,8 @@ h2 {
       color: black !important;
   }
 
-  .line, .card {
+  .line, .card, th, td {
       border-color: black !important;
   }
 }
+
