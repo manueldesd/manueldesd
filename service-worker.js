@@ -1,11 +1,14 @@
-const CACHE_NAME = 'web-app-cache-v1';
+const CACHE_NAME = 'basic-web-app-cache-v1';
 const urlsToCache = [
     '/',
     '/index.html',
-    '/styles.css',
-    '/script.js'
+    '/style.css',
+    '/script.js',
+    '/icon.png',
+    '/icon-512x512.png'
 ];
 
+// Install Service Worker and Cache Files
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -15,11 +18,28 @@ self.addEventListener('install', (event) => {
     );
 });
 
+// Fetch from Cache or Network
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
-            .then((cachedResponse) => {
-                return cachedResponse || fetch(event.request);
+            .then((response) => {
+                return response || fetch(event.request);
             })
+    );
+});
+
+// Activate Service Worker
+self.addEventListener('activate', (event) => {
+    const cacheWhitelist = [CACHE_NAME];
+    event.waitUntil(
+        caches.keys().then((cacheNames) => {
+            return Promise.all(
+                cacheNames.map((cacheName) => {
+                    if (!cacheWhitelist.includes(cacheName)) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
     );
 });

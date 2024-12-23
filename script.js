@@ -1,9 +1,9 @@
-// Inline JavaScript for interactivity
-document.getElementById('actionButton').addEventListener('click', function() {
-    alert('Button clicked!');
-});
+// Function to change message when button is clicked
+function changeMessage() {
+    document.getElementById('message').textContent = "You clicked the button!";
+}
 
-// Service Worker registration (for PWA functionality)
+// Register Service Worker
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
