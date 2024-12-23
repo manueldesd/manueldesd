@@ -2,6 +2,7 @@ const CACHE_NAME = 'fruit-juice-cache-v1';
 const urlsToCache = [
   '/',
   '/index.html',
+  '/fruit.html',
   '/style.css',
   '/script.js',
   '/icon.png',
