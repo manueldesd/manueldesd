@@ -8,11 +8,10 @@
     <link rel="icon" href="mdsd.png" type="image/png">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#ffffff">
-    
 </head>
 <body>
-     <!-- Hamburger Menu -->
-     <div class="hamburger-menu" onclick="toggleMenu()">
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
         <div class="hamburger-icon">
             <div class="bar"></div>
             <div class="bar"></div>
@@ -29,64 +28,22 @@
             <li><a href="#">...</a></li>
         </ul>
     </div>
-   
+
     <div class="container">
         <h1>Manuel <br>de Souza-Deacon</h1>
-        <!-- <img src="icon.png" alt="juice" class="juice"> -->
     </div>
 
-    <hr class="line">
-    <h2>...</h2>
-    <hr class="line">
-    <br>
-    <style>
-        /* Styles specific to the unique table */
-        #unique-table {
-            margin: 0 auto; /* Centers the table horizontally */
-            border-collapse: collapse; /* Optional: For a clean look */
-        }
-    
-        #unique-table td {
-            text-align: right; /* Centers content in cells */
-        }
-
-        #unique-table .t2 {
-           text-align: left;
-        }
-    </style>
     <div class="buttons-container">
-        <button class="button" ><a href="fruit.html">FJ</button>
-        <button class="button" ><a href="carrot.html">Carrot Cake</button>
+        <button><a href="fruit.html">FJ</a></button>
+        <button><a href="carrot.html">Carrot Cake</a></button>
     </div>
-    
-    <hr class="line">
-    <br>
-    <div class="box">
-    </div>
+
+    <!-- Dark Mode Toggle Slider -->
+    <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider"></span>
+    </label>
 
     <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker
-                    .register('./service-worker.js')
-                    .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch((error) => {
-                        console.log('Service Worker registration failed:', error);
-                    });
-            });
-        }
-    </script>
-    <script>
-        const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      
-        if (prefersDarkMode) {
-          document.body.style.backgroundColor = 'white';
-          document.body.style.color = 'black';
-        }
-      </script>
-      
 </body>
 </html>
