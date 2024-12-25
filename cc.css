@@ -151,22 +151,29 @@ footer {
   background-color: transparent; /* Optional: gives a background color */
 }
 
-
-/* Button styling */
-button {
-  display: inline-block;
-  justify-content: center;
-  background-color: transparent;
-  border: dotted 1px white;
-  color: white;
-  padding: 5px 15px; /* Adjust padding for tighter fit */
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-align: center; /* Ensures the text is centered within the button */
-  width:15%;
+/* Container to center everything */
+.container_1 {
+  display: flex;
+  flex-direction: column;  /* Stack the elements vertically */
+  justify-content: center; /* Vertically center */
+  align-items: center;     /* Horizontally center */
+  text-align: center;      /* Centers the text */
+  max-width: 90%;          /* Prevents it from becoming too wide on large screens */
+  margin: 0 auto;          /* Centers it horizontally */
+  padding: 10px;
+  box-sizing: border-box;  /* Ensures padding does not affect width/height */
 }
 
+/* For better spacing on different devices */
+button, select, label {
+  margin: 10px; /* Adds space between elements */
+  padding: 10px 20px; /* Adds padding for buttons and selects */
+  width: 100%; /* Makes them full-width on smaller devices */
+  max-width: 300px; /* Limits the max width */
+  background-color: black;
+  color: white;
+  border: dotted 1px white;
+}
 button:hover {
   background-color: white;
   color: black;
@@ -181,32 +188,4 @@ button a {
 /* Remove text decoration globally */
 a {
   text-decoration: none;
-}
-
-/* Container to center everything */
-.container_1 {
-  display: flex;
-  flex-direction: column; /* Stack the elements vertically */
-  justify-content: center; /* Vertically center */
-  align-items: center; /* Horizontally center */
-  text-align: center; /* Optional: centers the text */
-}
-
-/* Styling for individual elements (optional but useful) */
-button, select, label {
-  margin: 10px; /* Add space between elements */
-}
-
-.custom-select, label {
-  display: inline-block;
-  justify-content: center;
-  background-color: black;
-  border: dotted 1px white;
-  color: white;
-  padding: 5px 15px;
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-align: center;
-  width:15%;
 }
