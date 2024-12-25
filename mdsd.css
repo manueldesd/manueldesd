@@ -94,48 +94,93 @@ body.dark-mode button {
     margin-top: 20px;
 }
 
+* Hamburger Menu */
+.hamburger-menu {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.hamburger-icon .bar {
+  width: 30px;
+  height: 5px;
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+/* When the hamburger menu is open */
+.hamburger-icon.open .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-icon.open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
 /* Navigation Menu */
 .nav-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .nav-menu.visible {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 .nav-menu ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
+  list-style: none;
+  padding: 0;
+  text-align: center;
 }
 
 .nav-menu ul li {
-    margin: 20px 0;
+  margin: 20px 0;
 }
 
 .nav-menu ul li a {
-    text-decoration: none;
-    font-size: 2rem;
-    color: white;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  transition: color 0.3s ease;
 }
 
 .nav-menu ul li a:hover {
-    color: #03f4fc;
+  color: #03f4fc;
 }
- a {
-    text-decoration: none;
-    color: black;
+
+/* Footer */
+footer {
+  color: black;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
 }
