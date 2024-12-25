@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Juice</title>
+    <link rel="stylesheet" href="fj.css">
+    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+     <!-- Hamburger Menu -->
+     <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="hamburger-icon">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="carrot.html">Carrot Cake</a></li>
+            <li><a href="#">...</a></li>
+            <li><a href="#">...</a></li>
+        </ul>
+    </div>
+   <div class="space">
+    
+   </div>
+    <div class="container">
+        <h1>Fruit <br>Juice</h1>
+        <img src="icon.png" alt="juice" class="juice">
+    </div>
+
+    <hr class="line">
+    <h2>Cash-Up Tool</h2>
+    <hr class="line">
+    <br>
+    <style>
+        /* Styles specific to the unique table */
+        #unique-table {
+            margin: 0 auto; /* Centers the table horizontally */
+            border-collapse: collapse; /* Optional: For a clean look */
+        }
+    
+        #unique-table td {
+            text-align: right; /* Centers content in cells */
+        }
+
+        #unique-table .t2 {
+           text-align: left;
+        }
+    </style>
+    
+    <table id="unique-table">
+        <tbody>
+            <tr>
+                <td colspan="2" class="t1">Cash to Bank | R </td>
+                <td id="cash-to-bank" class="t2">0</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="t1">Cash Counted | R </td>
+                <td id="cash-counted">0</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2 style="color:red; font-style: italic; font-weight: bold;">Close the Register with the amount from Cash counted!</h2>
+    <br>
+    <table id="cash-table">
+        <thead>
+            <tr>
+                <th>Value</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>R200</td><td><input type="number" onchange="updateTotals()" data-value="200"></td><td class="total">0</td></tr>
+            <tr><td>R100</td><td><input type="number" onchange="updateTotals()" data-value="100"></td><td class="total">0</td></tr>
+            <tr><td>R50</td><td><input type="number" onchange="updateTotals()" data-value="50"></td><td class="total">0</td></tr>
+            <tr><td>R20</td><td><input type="number" onchange="updateTotals()" data-value="20"></td><td class="total">0</td></tr>
+            <tr><td>R10</td><td><input type="number" onchange="updateTotals()" data-value="10"></td><td class="total">0</td></tr>
+            <tr><td>R5</td><td><input type="number" onchange="updateTotals()" data-value="5"></td><td class="total">0</td></tr>
+            <tr><td>R2</td><td><input type="number" onchange="updateTotals()" data-value="2"></td><td class="total">0</td></tr>
+            <tr><td>R1</td><td><input type="number" onchange="updateTotals()" data-value="1"></td><td class="total">0</td></tr>
+            <tr><td>50c</td><td><input type="number" onchange="updateTotals()" data-value="0.5"></td><td class="total">0</td></tr>
+            <tr><td>20c</td><td><input type="number" onchange="updateTotals()" data-value="0.2"></td><td class="total">0</td></tr>
+            <tr><td>10c</td><td><input type="number" onchange="updateTotals()" data-value="0.1"></td><td class="total">0</td></tr>
+        </tbody>
+    </table>
+    <br>
+    <hr class="line">
+    <div class="buttons-container">
+        <button onclick="clearAll()" class="button">Clear All</button>
+        <button onclick="printPage()" class="button">Print</button>
+    </div>
+    <hr class="line">
+    <br>
+    
+     <!-- Footer -->
+     <footer>
+        <p>&copy; 2024 Manuel de Souza-Deacon - All Rights Reserved</p>
+    </footer>
+
+    <script src="fj.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('./service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
