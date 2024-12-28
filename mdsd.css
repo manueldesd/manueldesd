@@ -14,10 +14,15 @@ body {
 }
 
 /* Center alignment for container */
-.container {
+.section1{
     text-align: center;
+    height: 100vh;
 }
 
+.section2{
+  text-align: center;
+  height: 100vh;
+}
 /* Heading styling */
 h1 {
     margin: 20px 0;
@@ -143,8 +148,23 @@ footer {
     color: white;
     text-align: center;
     padding: 1rem;
-    position: fixed;
     bottom: 0;
     width: 100%;
     z-index: 100;
+}
+img{
+  height:5%;
+  width: auto;
+}
+.image-button {
+    width: 200px;
+    height: 50px;
+    background-image: url('fj.png');
+    background-size: cover;
+    background-position: center;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
 }

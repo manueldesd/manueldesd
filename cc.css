@@ -145,7 +145,7 @@ footer {
   color: white;
   text-align: center;
   padding: 1rem;
-  position: fixed;  /* Fixes the footer to the bottom */
+ 
   bottom: 0; /* Ensures it's at the bottom of the viewport */
   left: 0; /* Ensures it's horizontally aligned with the page */
   width: 100%; /* Makes sure the footer spans the full width */
