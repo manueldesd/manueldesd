@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrot Cake</title>
     <link rel="stylesheet" href="cc.css">
-    <link rel="icon" href="icon.png" type="image/png">
+    <link rel="icon" href="fj.png" type="image/png">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <!-- Hamburger Menu -->
     <div class="hamburger-menu" onclick="toggleMenu()">
         <div class="hamburger-icon">
             <div class="dot"></div>
@@ -22,82 +23,53 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="fj.html">Fruit Juice</a></li>
+            <li><a href="cc.html">Carrot Cake</a></li>
         </ul>
     </div>
-   <div class="space">
-    
-   </div>
+
+    <br>
     <div class="container">
-        <h1>Carrot<br>Cake</h1>
+        <h1>Carrot <br>Cake</h1>
         <img src="carrot.png" alt="juice" class="juice">
     </div>
 
     <hr class="line">
-    <h2>Tag Printing Tool</h2>
+    <h2>Price Tag Generator</h2>
     <hr class="line">
-    <br>
-    <div class="container_1">
-        <label for="imageInput" class="button" style="width:80%">Choose Price Tags</label>
-        <input type="file" id="imageInput" accept="image/*" multiple hidden>
-
+    <br>  
+    <div class="gen">
+        <input type="file" id="imageInput" multiple accept="image/*">
         <br>
         <div id="imagePreviews"></div>
-        <br>
-        <button id="generatePDF" disabled>Print Tags</button>
-        <br>
-        <br>
-        <select class="custom-select" id="sizeSelector">
-          <option value="original">Shelves</option>
-          <option value="fixed">Display</option>
+        <button id="generatePDF" disabled>Generate PDF</button>
+        <select id="sizeSelector">
+            <option value="default">Shelves size</option>
+            <option value="fixed">Display Size</option>
         </select>
     </div>
-      
-
+     <hr class="line">
+     <br>
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Carrot Cake - All Rights Reserved</p>
+        <p>&copy; 2024 Manuel de Souza-Deacon - All Rights Reserved</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="cc.js"></script>
 
-    <!-- Register service worker -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('service-worker.js')
-                    .then(registration => {
+                navigator.serviceWorker
+                    .register('./service-worker.js')
+                    .then((registration) => {
                         console.log('Service Worker registered with scope:', registration.scope);
                     })
-                    .catch(error => {
+                    .catch((error) => {
                         console.log('Service Worker registration failed:', error);
                     });
             });
         }
-    </script>
-    <script>
-        // Show offline notice when service worker is offline
-        window.addEventListener('load', () => {
-            if (!navigator.onLine) {
-                const offlineNotice = document.createElement('div');
-                offlineNotice.classList.add('offline-notice');
-                offlineNotice.innerText = 'You are offline. Some features may not work.';
-                document.body.appendChild(offlineNotice);
-                offlineNotice.style.display = 'block';
-            }
-        });
-
-        // Monitor online/offline events
-        window.addEventListener('online', () => {
-            document.querySelector('.offline-notice')?.remove();
-        });
-
-        window.addEventListener('offline', () => {
-            const offlineNotice = document.createElement('div');
-            offlineNotice.classList.add('offline-notice');
-            offlineNotice.innerText = 'You are offline. Some features may not work.';
-            document.body.appendChild(offlineNotice);
-            offlineNotice.style.display = 'block';
-        });
     </script>
 </body>
 </html>
