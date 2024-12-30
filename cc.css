@@ -1,63 +1,87 @@
 body {
-  font-family: 'Courier New', Courier, monospace;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: white;
-  background-color: black;
-}
-
-body,
-html {
-  overflow-x: hidden;
-}
-
-.space {
-  height: 15px;
-}
-
-/* Default styles */
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    background-color: black;
+  }
+  
+  body,
+  html {
+    overflow-x: hidden;
+  }
+  
+  .space {
+    height: 15px;
+  }
+  
 .line {
   width: 100%;
   border-bottom: solid 1px white;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  button {
+    background-color: transparent;
+    color: white;
+    border: transparent;
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+  
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .button:active {
+    background-color: white;
+    color: black;
+  }
 
-h2 {
-  text-align: center;
-  font-size: 15px;
-  font-stretch: 20%;
-  margin: 0;
-  color: white;
-}
+  h2 {
+    text-align: center;
+    font-size: 15px;
+    font-stretch: 20%;
+    margin: 0;
+    color: white;
+  }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: transparent;
-  padding-top: 10px;
-}
-
-.container h1 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 2.5em;
-  color: white;
-  margin: 0;
-}
-
-.juice {
-  width: 120px;
-  height: auto;
-  border-radius: 10px;
-  right: 0;
-}
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding-top: 10px;
+  }
+  
+  .container h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5em;
+    color: white;
+    margin: 0;
+  }
+  
+  .juice {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    right: 0;
+  }
 
 /* Hamburger Menu */
 .hamburger-menu {
   position: absolute;
-  top: 1rem;
-  right: 1rem; /* Align hamburger menu to the left */
+  top: 20px;
+  right: 20px;
   z-index: 10;
   cursor: pointer;
 }
@@ -72,9 +96,9 @@ h2 {
 }
 
 .hamburger-icon .dot {
-  width: 6px; /* Small circle size */
+  width: 6px;
   height: 6px;
-  background-color: white; /* Dots color */
+  background-color: white;
   border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -82,17 +106,17 @@ h2 {
 /* Hamburger menu becomes an "X" */
 .hamburger-icon.open .dot:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
-  width: 30px; /* Transform into a bar for X */
+  width: 30px;
   border-radius: 0;
 }
 
 .hamburger-icon.open .dot:nth-child(2) {
-  opacity: 0; /* Hide middle dot */
+  opacity: 0;
 }
 
 .hamburger-icon.open .dot:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
-  width: 30px; /* Transform into a bar for X */
+  width: 30px;
   border-radius: 0;
 }
 
@@ -103,8 +127,7 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(250, 250, 250, 0.5);
-  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,7 +154,7 @@ h2 {
 .nav-menu ul li a {
   text-decoration: none;
   font-size: 2rem;
-  color: rgb(0, 0, 0);
+  color: white;
   transition: color 0.3s ease;
 }
 
@@ -141,51 +164,69 @@ h2 {
 
 /* Footer */
 footer {
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position: fixed;  /* Fixes the footer to the bottom */
-  bottom: 0; /* Ensures it's at the bottom of the viewport */
-  left: 0; /* Ensures it's horizontally aligned with the page */
-  width: 100%; /* Makes sure the footer spans the full width */
-  background-color: transparent; /* Optional: gives a background color */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
 }
 
-/* Container to center everything */
+/* Container for Image Previews */
 .container_1 {
   display: flex;
-  flex-direction: column;  /* Stack the elements vertically */
-  justify-content: center; /* Vertically center */
-  align-items: center;     /* Horizontally center */
-  text-align: center;      /* Centers the text */
-  max-width: 90%;          /* Prevents it from becoming too wide on large screens */
-  margin: 0 auto;          /* Centers it horizontally */
-  padding: 10px;
-  box-sizing: border-box;  /* Ensures padding does not affect width/height */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  width: 80%; /* Reduced width for better responsiveness */
+  max-width: 600px; /* Limit width */
+  margin: 20px auto; /* Centered horizontally */
+  padding-top: 20px;
 }
 
-/* For better spacing on different devices */
-button, select, label {
-  margin: 10px; /* Adds space between elements */
-  padding: 10px 20px; /* Adds padding for buttons and selects */
-  width: 100%; /* Makes them full-width on smaller devices */
-  max-width: 300px; /* Limits the max width */
-  background-color: black;
+#imagePreviews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#imagePreviews img {
+  margin: 10px;
+  width: 80px; /* Increased image size for better visibility */
+  height: 80px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners for images */
+  transition: transform 0.3s ease;
+}
+
+#imagePreviews img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Delete Button */
+button.delete-btn {
+  background-color: transparent;
   color: white;
-  border: dotted 1px white;
-}
-button:hover {
-  background-color: white;
-  color: black;
-}
-
-button a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: bold;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: -10px;
 }
 
-/* Remove text decoration globally */
-a {
-  text-decoration: none;
+button.delete-btn:hover {
+  color: red;
 }
+
+select {
+  margin-bottom: 20px;
+}
+
+  .gen {
+    display: colmn;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    background-color: transparent;
+    padding-top: 10px;
+  }

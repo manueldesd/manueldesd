@@ -19,10 +19,7 @@ function handleImageUpload(event) {
         return;
     }
 
-    images = [];
-    const previewsContainer = document.getElementById('imagePreviews');
-    previewsContainer.innerHTML = ''; // Clear previous previews
-
+    // Process files and add images
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
@@ -36,9 +33,23 @@ function handleImageUpload(event) {
                 const height = img.height * (width / img.width);
                 images.push({ src: e.target.result, width, height });
 
+                // Create image preview
                 const imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
-                previewsContainer.appendChild(imgElement);
+
+                // Create delete button with an "X"
+                const deleteBtn = document.createElement('button');
+                deleteBtn.classList.add('delete-btn');
+                deleteBtn.innerText = 'X';
+                deleteBtn.onclick = () => deleteImage(i);
+
+                // Create container for image and delete button
+                const container = document.createElement('div');
+                container.appendChild(imgElement);
+                container.appendChild(deleteBtn);
+
+                // Append the image preview to the container
+                document.getElementById('imagePreviews').appendChild(container);
             };
         };
 
@@ -49,7 +60,34 @@ function handleImageUpload(event) {
     document.getElementById('generatePDF').disabled = files.length === 0;
 }
 
-const sizeSelector = document.getElementById('sizeSelector');
+function deleteImage(index) {
+    // Remove the image from the images array
+    images.splice(index, 1);
+
+    // Re-render the image previews
+    const previewsContainer = document.getElementById('imagePreviews');
+    previewsContainer.innerHTML = ''; // Clear the current previews
+
+    // Loop through the images array and re-display each image
+    images.forEach((image, i) => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.src;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('delete-btn');
+        deleteBtn.innerText = 'X';
+        deleteBtn.onclick = () => deleteImage(i);
+
+        const container = document.createElement('div');
+        container.appendChild(imgElement);
+        container.appendChild(deleteBtn);
+
+        previewsContainer.appendChild(container);
+    });
+
+    // Enable or disable the generate button
+    document.getElementById('generatePDF').disabled = images.length === 0;
+}
 
 function generatePDF() {
     const pdf = new jsPDF({
@@ -59,29 +97,19 @@ function generatePDF() {
 
     let x = margin;
     let y = headerSpace;
-    const selectedSize = sizeSelector.value;
+    const selectedSize = document.getElementById('sizeSelector').value;
 
-    // Adjust dimensions based on the selected size
     const selectedWidth = selectedSize === 'fixed' ? 62.2 : imageWidthMM;
     const selectedHeight = selectedSize === 'fixed' ? 28 : imageHeightMM;
 
     const imagesPerRow = Math.floor((pageWidth - 2 * margin) / selectedWidth);
 
     images.forEach((image, index) => {
-        // Add header and footer
-        if (index === 0 || (index > 0 && index % imagesPerRow === 0 && y === headerSpace)) {
-            pdf.setFontSize(12);
-            pdf.text('Carrot Cake - Tag Printer', pageWidth / 2, 10, { align: 'center' });
-            pdf.text('Do not re-print! Save a tree!', pageWidth / 2, pageHeight - 10, { align: 'center' });
-        }
-
         // Check if the current image fits on the current page
         if (y + selectedHeight > pageHeight - footerSpace) {
             pdf.addPage();
             x = margin;
             y = headerSpace;
-            pdf.text('Carrot Cake - Tag Printer', pageWidth / 2, 10, { align: 'center' });
-            pdf.text('Do not re-print! Save a tree!', pageWidth / 2, pageHeight - 10, { align: 'center' });
         }
 
         // Add the image
@@ -100,35 +128,14 @@ function generatePDF() {
     const pdfURL = URL.createObjectURL(pdfBlob);
     window.open(pdfURL, '_blank');
 }
-
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent the default mini-infobar from appearing on mobile
-    event.preventDefault();
-    // Save the event so it can be triggered later
-    deferredPrompt = event;
-    // Optionally, show a custom install button
-    const installButton = document.getElementById('install-button');
-    installButton.style.display = 'block';
-
-    installButton.addEventListener('click', () => {
-        // Show the install prompt
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            deferredPrompt = null;
-        });
-    });
-});
 function toggleMenu() {
+
     const menu = document.getElementById('navMenu');
+
     const hamburgerIcon = document.querySelector('.hamburger-icon');
 
     // Toggle visibility of the navigation menu
     menu.classList.toggle('visible');
     hamburgerIcon.classList.toggle('open');
+
 }
