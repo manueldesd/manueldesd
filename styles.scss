@@ -1,0 +1,99 @@
+$primary-color: #0078d4;
+$secondary-color: #f4f4f4;
+$font-family: 'courier new' , monospace;
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  overflow-x: hidden;
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('landing.jpg') no-repeat center center/cover;
+  text-align: center;
+  color: white;
+
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  .scroll-down {
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    animation: bounce 2s infinite;
+  }
+}
+
+.parallax {
+  position: relative;
+  height: 100vh;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateZ(0);
+    z-index: -1;
+    transition: all 0.3s;
+  }
+
+  &.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+}
+
+#section1::before {
+  background-image: url('section1-bg.jpg');
+}
+
+#section2::before {
+  background-image: url('section2-bg.jpg');
+}
+
+.static-content {
+  padding: 50px 20px;
+  background-color: $secondary-color;
+  color: #333;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: $primary-color;
+  color: white;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .scroll-down {
+    font-size: 1rem;
+  }
+}

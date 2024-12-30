@@ -1,0 +1,229 @@
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: space-between; /* Spread elements vertically */
+    background: url('landing.jpg') no-repeat center center/cover;
+    text-align: left;
+    color: white;
+    padding: 0 20px; /* Add horizontal padding */
+  
+    .content-wrapper {
+      flex-grow: 1; /* Let this section take available space */
+      display: flex;
+      align-items: center; /* Align content vertically in the middle */
+      justify-content: flex-start; /* Align content to the left */
+  
+      h1 {
+        font-size: 2.5rem;
+        margin: 0;
+        font-weight: inherit;
+      }
+    }
+  
+    .scroll-down {
+      align-self: center; /* Center the link horizontally */
+      margin-bottom: 20px; /* Add spacing from the bottom */
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      animation: bounce 2s infinite;
+    }
+}
+  
+
+
+.parallax {
+    position: relative;
+    height: 100vh;
+}
+
+.parallax::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateZ(0);
+    z-index: -1;
+    transition: all 0.3s;
+}
+
+.parallax .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+#section1::before {
+    background-image: url('section1-bg.jpg');
+}
+
+#section2::before {
+    background-image: url('section2-bg.jpg');
+}
+
+.static-content {
+    padding: 50px 20px;
+    background-color: black;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0078d4;
+    color: white;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .scroll-down {
+        font-size: 1rem;
+    }
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem; /* Align hamburger menu to the left */
+    z-index: 10;
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger-icon .dot {
+    width: 6px; /* Small circle size */
+    height: 6px;
+    background-color: white; /* Dots color */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger menu becomes an "X" */
+.hamburger-icon.open .dot:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    width: 30px; /* Transform into a bar for X */
+    border-radius: 0;
+}
+
+.hamburger-icon.open .dot:nth-child(2) {
+    opacity: 0; /* Hide middle dot */
+}
+
+.hamburger-icon.open .dot:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    width: 30px; /* Transform into a bar for X */
+    border-radius: 0;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(250, 250, 250, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-menu.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-menu ul li {
+    margin: 20px 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a:hover {
+    color: #03f4fc;
+}
+
+/* Button styling */
+button {
+    display: inline-block;
+    justify-content: center;
+    background-color: transparent;
+    border: dotted 1px white;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+button a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+/* Remove text decoration globally */
+a {
+    text-decoration: none;
+}
