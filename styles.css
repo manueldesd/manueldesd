@@ -10,7 +10,7 @@ header {
     display: flex;
     flex-direction: column; /* Arrange items vertically */
     justify-content: space-between; /* Spread elements vertically */
-    background: url('landing.jpg') no-repeat center center/cover;
+   /* background: url('landing.jpg') no-repeat center center/cover;*/
     text-align: left;
     color: white;
     padding: 0 20px; /* Add horizontal padding */
@@ -18,14 +18,29 @@ header {
     .content-wrapper {
       flex-grow: 1; /* Let this section take available space */
       display: flex;
-      align-items: center; /* Align content vertically in the middle */
-      justify-content: flex-start; /* Align content to the left */
+      flex-direction: column;
+      align-items: flex-start; /* Align content vertically in the middle */
+      justify-content: center; /* Align content to the left */
   
       h1 {
         font-size: 2.5rem;
         margin: 0;
         font-weight: inherit;
+        animation: bounce 1s infinite; /* Hop effect only handled by CSS */
+        margin-bottom: 20px;
       }
+      
+      h2 {
+        font-size: 2.0rem;
+        margin: 0;
+        font-weight: inherit;
+      }
+    }
+
+    .hi{
+        background-color: red;
+        padding: 10px;
+        border-radius: 50px;
     }
   
     .scroll-down {
