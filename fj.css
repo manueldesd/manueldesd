@@ -21,27 +21,51 @@
     width: 100%;
     border-bottom: solid 1px white;
   }
-  
-  .card {
-    width: 100%;
-    border: solid 1px white;
-  }
-  
-  th {
-    font-weight: bold;
-    color: white; /* Light mode table header text color */
-    padding: 4px;
+
+.container {
+  max-width: 800px;
+  background: black;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: white;
+  align-content: center;
+}
+
+  h2 {
     text-align: center;
-    border-top: dotted 1px white;
-    border-bottom: dotted 1px white;
+    font-size: 15px;
+    font-stretch: 20%;
+    margin: 0;
+    color: white;
   }
   
-  td {
-    padding: 4px;
-    text-align: center;
-    color: white; 
+h4{
+  text-align: center;
+  color: white;
+}
+  .headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding-top: 10px;
   }
   
+  .headings h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5em;
+    color: white;
+    margin: 0;
+  }
+}
+h3 {
+  text-align: center;
+  color: white;
+}
+
+
+ 
   input {
     font-size: medium;
     width: 80px;
@@ -58,58 +82,118 @@
     border-bottom: dotted 2px orangered;
     outline: none;
   }
-  
-  
-  .buttons-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  
-  button {
-    background-color: transparent;
-    color: white;
-    border: transparent;
-    cursor: pointer;
-    padding: 10px 20px;
-  }
-  
-  button:hover {
-    background-color: white;
-    color: black;
-  }
-  
-  .button:active {
-    background-color: white;
-    color: black;
-  }
-  
-  h2 {
+
+button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px dotted white;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+ 
+  th {
+    font-weight: bold;
+    color: white; /* Light mode table header text color */
+    padding: 4px;
     text-align: center;
-    font-size: 15px;
-    font-stretch: 20%;
-    margin: 0;
-    color: white;
+    border-top: dotted 1px white;
+    border-bottom: dotted 1px white;
   }
   
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent;
-    padding-top: 10px;
+  td {
+    padding: 4px;
+    text-align: center;
+    color: white; 
   }
-  
-  .container h1 {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 2.5em;
-    color: white;
-    margin: 0;
-  }
-  
-  .juice {
+
+#results-section {
+  text-align: center;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.navigation {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#discrepancy {
+  color: red;
+  font-weight: bold;
+}
+
+/* Container for the toggle slider */
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the slider itself */
+.toggle-container input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Slider circle inside */
+.toggle-container input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Change background color when checked */
+.toggle-container input[type="checkbox"]:checked {
+  background-color: #4CAF50;
+}
+
+/* Move the circle when checked */
+.toggle-container input[type="checkbox"]:checked::before {
+  transform: translateX(20px);
+}
+
+/* Label text beside the toggle (optional) */
+.toggle-container label {
+  margin-left: 20px;
+  font-size: 16px;
+  color: white;
+}
+
+.juice {
     width: 120px;
     height: auto;
     border-radius: 10px;
@@ -210,4 +294,11 @@
     position: relative;  /* Or 'sticky' to stay at the bottom of the page */
     margin-top: auto;  /* Pushes the footer to the bottom */
   }
-  
+
+.ctre {
+  text-align: center;
+}
+
+table {
+  margin: 0 auto; /* Centers the table horizontally */
+}

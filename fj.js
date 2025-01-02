@@ -1,109 +1,185 @@
-// Function to calculate totals and update UI
+document.addEventListener("DOMContentLoaded", () => {
+  const denominations = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200];
+  const floatRows = document.getElementById("float-rows");
+  const cashTakenRows = document.getElementById("cash-taken-rows");
+  const bankingRows = document.getElementById("banking-rows");
 
-function updateTotals() {
+  const totalFloatDisplay = document.getElementById("total-float");
+  const totalCashTakenDisplay = document.getElementById("total-cash-taken");
+  const bankAmountInput = document.getElementById("bank-amount");
 
-    let cashCounted = 0;
-    const tableData = [];
+  const resultFloatDisplay = document.getElementById("result-float");
+  const resultCashTakenDisplay = document.getElementById("result-cash-taken");
+  const resultBankedDisplay = document.getElementById("result-banked");
+  const resultRemainingDisplay = document.getElementById("result-remaining");
 
-    // Iterate over each row in the table to calculate totals based on denomination counts
-    document.querySelectorAll('#cash-table tbody tr').forEach((row, index) => {
-        const input = row.querySelector('input');
-        const quantity = parseFloat(input.value) || 0;
-        const value = parseFloat(input.dataset.value);
-        const total = quantity * value;
+  const finalizeButton = document.getElementById("finalize-button");
+  const clearButton = document.getElementById("clear-all-button");
 
-        // Update the total column for the current row
-        row.querySelector('.total').textContent = total.toFixed(2);
-        cashCounted += total;
+  let isFloatEnabled = true;
 
-        // Save row data for Local Storage
-        tableData.push({ index, value, quantity });
+  // Function to create rows dynamically for float and cash taken sections
+  const createRows = (denominations, parent, type) => {
+    denominations.forEach((denomination) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>R${denomination}</td>
+        <td><input type="number" data-denomination="${denomination}" class="quantity" value="" placeholder=""></td>
+        <td class="denomination-total">R0.00</td>
+      `;
+      parent.appendChild(row);
+
+      // Load saved value from localStorage if available
+      const savedValue = localStorage.getItem(`${type}-${denomination}`);
+      if (savedValue) {
+        row.querySelector(".quantity").value = savedValue;
+      }
+    });
+  };
+
+  // Initialize rows for float and cash taken pages
+  createRows(denominations, floatRows, "float");
+  createRows(denominations, cashTakenRows, "cash");
+
+  // Function to calculate the totals for float and cash taken
+  const calculateTotals = () => {
+    const calculateTotal = (parent) => {
+      const inputs = parent.querySelectorAll(".quantity");
+      let total = 0;
+
+      inputs.forEach((input) => {
+        const denomination = parseFloat(input.dataset.denomination);
+        const quantity = parseInt(input.value, 10) || 0;
+        const denominationTotal = denomination * quantity;
+
+        total += denominationTotal;
+        input.parentElement.nextElementSibling.textContent = `R${denominationTotal.toFixed(2)}`;
+
+        // Save the input value to localStorage
+        localStorage.setItem(`${input.classList.contains("quantity") ? "float" : "cash"}-${denomination}`, input.value);
+      });
+
+      return total;
+    };
+
+    let totalFloat = isFloatEnabled ? calculateTotal(floatRows) : 1000; // Default float value when disabled
+    const totalCashTaken = calculateTotal(cashTakenRows);
+    const bankAmount = totalCashTaken - totalFloat;
+
+    totalFloatDisplay.textContent = totalFloat.toFixed(2);
+    totalCashTakenDisplay.textContent = totalCashTaken.toFixed(2);
+    bankAmountInput.value = bankAmount.toFixed(2);
+
+    return { totalFloat, totalCashTaken, bankAmount };
+  };
+
+  // Function to update the banking breakdown when the user enters a banking amount
+  const updateBankingBreakdown = () => {
+    const { bankAmount } = calculateTotals();
+    let remainingAmount = bankAmount;
+    bankingRows.innerHTML = "";
+
+    const cashAvailable = {};
+    const cashTakenInputs = cashTakenRows.querySelectorAll(".quantity");
+
+    cashTakenInputs.forEach((input) => {
+      const denomination = parseFloat(input.dataset.denomination);
+      const quantity = parseInt(input.value, 10) || 0;
+      cashAvailable[denomination] = quantity;
     });
 
-    // Calculate derived values
-    const cashToBank = cashCounted - 1000; // Assuming cash to bank is total counted minus the initial cash in register (1000)
+    const sortedDenominations = [...denominations].reverse();
 
-    // Update the UI for "Cash Counted" and "Cash to Bank"
-    document.getElementById('cash-counted').textContent = cashCounted.toFixed(2);
-    document.getElementById('cash-to-bank').textContent = cashToBank.toFixed(2);
+    sortedDenominations.forEach((denomination) => {
+      const availableQty = cashAvailable[denomination] || 0;
+      const neededQty = Math.floor(remainingAmount / denomination);
 
-    // Save all data to Local Storage
-    localStorage.setItem('cashRegisterData', JSON.stringify({
-        cashCounted,
-        cashToBank,
-        tableData
-    }));
-}
+      const qtyToTake = Math.min(neededQty, availableQty);
+      remainingAmount -= qtyToTake * denomination;
+      remainingAmount = Math.max(remainingAmount, 0).toFixed(2);
 
-// Restore data from Local Storage on page load
-function restoreData() {
-    const savedData = localStorage.getItem('cashRegisterData');
-    if (savedData) {
-        const { cashCounted, cashToBank, tableData } = JSON.parse(savedData);
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>R${denomination}</td>
+        <td>${qtyToTake}</td>
+      `;
+      bankingRows.appendChild(row);
+    });
 
-        // Restore calculated fields
-        document.getElementById('cash-counted').textContent = cashCounted.toFixed(2);
-        document.getElementById('cash-to-bank').textContent = cashToBank.toFixed(2);
-
-        // Restore table row values
-        document.querySelectorAll('#cash-table tbody tr').forEach((row, index) => {
-            const input = row.querySelector('input');
-            const savedRow = tableData.find(data => data.index === index);
-
-            if (savedRow) {
-                input.value = savedRow.quantity || "";
-                row.querySelector('.total').textContent = (savedRow.quantity * savedRow.value).toFixed(2);
-            }
-        });
+    if (remainingAmount > 0.001) {
+      const errorRow = document.createElement("tr");
+      errorRow.innerHTML = `
+        <td colspan="2" style="color: red; font-weight: bold;">
+          Warning: Unable to break down R${remainingAmount.toFixed(2)} exactly.
+        </td>
+      `;
+      bankingRows.appendChild(errorRow);
     }
-}
+  };
 
-// Clear all fields and Local Storage
-function clearAll() {
-    // Clear all table inputs and totals
-    document.querySelectorAll('#cash-table tbody input').forEach(input => (input.value = ""));
-    document.querySelectorAll('#cash-table tbody .total').forEach(cell => (cell.textContent = "0"));
+  // Finalize button click event to show results
+  finalizeButton.addEventListener("click", () => {
+    const { totalFloat, totalCashTaken, bankAmount } = calculateTotals();
+    const remainingCash = totalCashTaken - bankAmount;
 
-    // Reset summary fields
-    document.getElementById('cash-counted').textContent = "0";
-    document.getElementById('cash-to-bank').textContent = "0";
+    // Update the Final Results section
+    resultFloatDisplay.textContent = totalFloat.toFixed(2);
+    resultCashTakenDisplay.textContent = totalCashTaken.toFixed(2);
+    resultBankedDisplay.textContent = bankAmount.toFixed(2);
+    resultRemainingDisplay.textContent = remainingCash.toFixed(2);
 
-    // Remove data from Local Storage
-    localStorage.removeItem('cashRegisterData');
-}
+    // Show results page after finalization
+    showPage('results-page');
+  });
 
-// Event: Restore data on page load
-window.addEventListener('DOMContentLoaded', restoreData);
-
-// Utility: Print the page
-function printPage() {
-    window.print();
-}
-
-let deferredPrompt;
-const installButton = document.getElementById('install-button');
-
-window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent the default install prompt
-    event.preventDefault();
-    deferredPrompt = event;
-
-    installButton.style.display = 'block'; // Show your custom install button
-});
-
-installButton.addEventListener('click', () => {
-    // Show the install prompt
-    deferredPrompt.prompt();
-
-    // Wait for the user's response
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-        } else {
-            console.log('User dismissed the install prompt');
-        }
-        deferredPrompt = null;
+  // Event listener to update totals on input change
+  document.querySelectorAll(".quantity").forEach((input) => {
+    input.addEventListener("input", () => {
+      calculateTotals();
+      updateBankingBreakdown();
     });
+  });
+
+  // Show and hide pages based on button clicks
+  const showPage = (pageId) => {
+    document.querySelectorAll('.page').forEach(page => {
+      page.classList.remove('active');
+    });
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+      targetPage.classList.add('active');
+    }
+  };
+
+  document.querySelectorAll(".next-page-button").forEach(button => {
+    button.addEventListener("click", (e) => {
+      const targetPage = e.target.getAttribute("data-target");
+      showPage(targetPage);
+    });
+  });
+
+  // Toggle Switch for enabling/disabling float count
+  const floatToggle = document.getElementById("float-toggle");
+
+  floatToggle.addEventListener("change", () => {
+    isFloatEnabled = floatToggle.checked;
+    if (!isFloatEnabled) {
+      floatRows.querySelectorAll(".quantity").forEach((input) => (input.disabled = true));
+      totalFloatDisplay.textContent = "1000.00"; // Default value when disabled
+    } else {
+      floatRows.querySelectorAll(".quantity").forEach((input) => (input.disabled = false));
+      calculateTotals();
+    }
+  });
+
+  // Clear All button to reset and clear localStorage
+  clearButton.addEventListener("click", () => {
+    localStorage.clear(); // Clear all saved data
+    location.reload(); // Reload the page to reset the inputs
+  });
+
+  // Initial calculation when the page loads
+  calculateTotals();
 });
 
 function toggleMenu() {
