@@ -1,13 +1,16 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Juice</title>
-    <link rel="stylesheet" href="fj.css">
-    <link rel="icon" href="fj.png" type="image/png">
-    <link rel="manifest" href="manifest.json">
-</head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manuel de Souza-Deacon</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="icon" href="mdsd.png" type="image/png">
+        <link rel="manifest" href="manifest.json">
+        <meta name="theme-color" content="#ffffff">
+    </head>
 <body>
-       <!-- Hamburger Menu -->
+    <!-- Hamburger Menu -->
     <div class="hamburger-menu" onclick="toggleMenu()">
         <div class="hamburger-icon">
             <div class="dot"></div>
@@ -20,120 +23,54 @@
     <div class="nav-menu" id="navMenu">
         <ul>
             <li><a href="index.html">Home</a></li>
+            <li><a href="fj.html">Fruit Juice</a></li>
             <li><a href="cc.html">Carrot Cake</a></li>
         </ul>
     </div>
-   <div class="space">
-    
-   </div>
-    <div class="headings">
-        <h1>Fruit <br>Juice</h1>
-        <img src="fj.png" alt="juice" class="juice">
-    </div>
-
-    <hr class="line">
-    <h2>Cash-Up Tool</h2>
-    <hr class="line">
-    <br>
-    <style>
-        /* Styles specific to the unique table */
-        #unique-table {
-            margin: 0 auto; /* Centers the table horizontally */
-            border-collapse: collapse; /* Optional: For a clean look */
-        }
-    
-        #unique-table td {
-            text-align: right; /* Centers content in cells */
-        }
-
-        #unique-table .t2 {
-           text-align: left;
-        }
-    </style>
-    
-  <div class="container">
-   
-
-    <!-- Step 1: Float Count -->
-    <div class="page active" id="float-count-page">
-      <section id="float-count-section">
-       
-
-        <!-- Toggle for enabling/disabling float count -->
-        <div class="toggle-container">
-          <input type="checkbox" id="float-toggle" checked>
-          <label for="float-toggle">Enable Float-In</label>
+    <header id="landing">
+        <div class="content-wrapper">
+            <h1 class="hi">hi</h1>
+            <h2>I'm Manuel<br>Welcome, to my website</h2>
         </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Denom</th>
-              <th>Quantity</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody id="float-rows"></tbody>
-        </table>
-        <p>Total Float-In: R<span id="total-float">0.00</span></p>
-        <button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button>
-      </section>
+        <a href="#content" class="scroll-down">Explore</a>
+    </header>
+  
+<section class="parallax" id="section1">
+    <div class="content">
+        <!-- <h2>Lunch Box</h2>
+        <div class="buttons-container">
+            <button><a href="fj.html">Fruit Juice</a></button>
+            <button><a href="cc.html">Carrot Cake</a></button>
+        </div>
+        <p>Scroll down for more...</p> -->
     </div>
 
-    <!-- Step 2: Cash Taken -->
-    <div class="page" id="cash-taken-page">
-      <section id="cash-taken-section">
-        <h2>Step 2: Cash Taken</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Denom</th>
-              <th>Quantity</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody id="cash-taken-rows"></tbody>
-        </table>
-        <p>Total Cash Taken: R<span id="total-cash-taken">0.00</span></p>
-        <button class="next-page-button" data-target="banking-page">Next: Banking</button>
-      </section>
+  </section>
+  
+  <section class="static-content" id="content">
+    <div class="content">
+        <h2 style="padding-top: 0;">Lunch Box</h2>
+        <div class="line"></div>
+        <br>
+        <div class="buttons-container">
+            <button><a href="fj.html">Fruit Juice</a></button>
+            <button><a href="cc.html">Carrot Cake</a></button>
+        </div>
+        <p>Scroll down for more...</p>
+  </section>
+  
+  <section class="parallax" id="section2">
+    <div class="content">
+      <h2>Section 2</h2>
+      <p>Enjoy the smooth scrolling effect!</p>
     </div>
+  </section>
 
-    <!-- Step 3: Banking -->
-    <div class="page" id="banking-page">
-      <section class="ctre" id="banking-section">
-        <h4>Step 3: Banking</h4>
-        <label for="bank-amount">Enter Amount to Bank:</label>
-        <input type="number" id="bank-amount" placeholder="0.00">
-        <button id="calculate-bank">Calculate Banking Breakdown</button>
-        <h3>Banking Breakdown</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Denom</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody id="banking-rows"></tbody>
-        </table>
-        <button id="finalize-button">Finalize and Show Results</button>
-      </section>
-    </div>
+  <footer>
+    <p>© 2024 Parallax World. All rights reserved.</p>
+  </footer>
 
-    <!-- Results -->
-    <div class="page" id="results-page">
-      <section id="results-section">
-        <h2>Final Results</h2>
-        <p>Total Float-In: R<span id="result-float">0.00</span></p>
-        <p>Total Cash Taken: R<span id="result-cash-taken">0.00</span></p>
-        <p>Amount Banked: R<span id="result-banked">0.00</span></p>
-        <p>Remaining Cash: R<span id="result-remaining">0.00</span></p>
-        <button class="next-page-button" data-target="float-count-page">Start Over</button>
-        <button id="clear-all-button">Clear All</button>
-      </section>
-    </div>
-  </div>
-
-  <script src="fj.js"></script>
+  <script src="script.js"></script>
+  <script src="script_2.js"></script>
 </body>
 </html>
