@@ -190,13 +190,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleMenu() {
+  const navMenu = document.getElementById('navMenu');
+  const hamburgerIcon = document.querySelector('.hamburger-icon');
 
-    const menu = document.getElementById('navMenu');
+  // Toggle visibility of the nav menu
+  navMenu.classList.toggle('visible');
 
-    const hamburgerIcon = document.querySelector('.hamburger-icon');
-
-    // Toggle visibility of the navigation menu
-    menu.classList.toggle('visible');
-    hamburgerIcon.classList.toggle('open');
+  // Toggle the hamburger icon's open state
+  hamburgerIcon.classList.toggle('open');
 }
-
