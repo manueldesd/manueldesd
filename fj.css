@@ -1,72 +1,70 @@
-  body {
+body {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     flex-direction: column;
     justify-content: center;
     color: white;
     background-color: black;
-  }
+}
   
-  body,
-  html {
+body,
+html {
     overflow-x: hidden;
-  }
+}
   
-  .space {
+.space {
     height: 15px;
-  }
-  
-  /* Default styles */
-  .line {
+}
+
+/* Default styles */
+.line {
     width: 100%;
     border-bottom: solid 1px white;
-  }
+}
 
 .container {
   max-width: 800px;
   background: black;
-  padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   color: white;
   align-content: center;
 }
 
-  h2 {
+h2 {
     text-align: center;
     font-size: 15px;
     font-stretch: 20%;
     margin: 0;
     color: white;
-  }
-  
-h4{
-  text-align: center;
-  color: white;
 }
-  .headings {
+  
+h4 {
+    text-align: center;
+    color: white;
+}
+
+.headings {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
     padding-top: 10px;
-  }
-  
-  .headings h1 {
+}
+
+.headings h1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 2.5em;
     color: white;
     margin: 0;
-  }
 }
+
 h3 {
-  text-align: center;
-  color: white;
+    text-align: center;
+    color: white;
 }
 
-
- 
-  input {
+input {
     font-size: medium;
     width: 80px;
     border-top: none;
@@ -76,175 +74,175 @@ h3 {
     text-align: center;
     color: white;
     background-color: black;
-  }
+}
   
-  input:focus {
+input:focus {
     border-bottom: dotted 2px orangered;
     outline: none;
-  }
+}
 
 button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background: transparent;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px dotted white;
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px dotted white;
 }
 
 button:hover {
-  background: white;
-  color: black;
+    background: white;
+    color: black;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 
- 
-  th {
+th {
     font-weight: bold;
     color: white; /* Light mode table header text color */
     padding: 4px;
     text-align: center;
     border-top: dotted 1px white;
     border-bottom: dotted 1px white;
-  }
-  
-  td {
+}
+
+td {
     padding: 4px;
     text-align: center;
     color: white; 
-  }
+}
 
 #results-section {
-  text-align: center;
+    text-align: center;
 }
 
 .page {
-  display: none;
+    display: none;
 }
 
 .page.active {
-  display: block;
+    display: block;
 }
 
+/* Navigation Buttons Alignment */
 .navigation {
   text-align: center;
   margin-bottom: 20px;
+  display: flex; /* Use Flexbox for inline button alignment */
+  justify-content: center; /* Center the buttons */
+  gap: 20px; /* Add space between the buttons */
 }
 
-#discrepancy {
-  color: red;
-  font-weight: bold;
-}
 
-/* Container for the toggle slider */
+
+/* Toggle Slider */
 .toggle-container {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 /* Style for the slider itself */
 .toggle-container input[type="checkbox"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px;
-  height: 30px;
-  background-color: #ccc;
-  border-radius: 50px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 /* Slider circle inside */
 .toggle-container input[type="checkbox"]::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 24px;
-  height: 24px;
-  background-color: white;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
 }
 
 /* Change background color when checked */
 .toggle-container input[type="checkbox"]:checked {
-  background-color: #4CAF50;
+    background-color: #4CAF50;
 }
 
 /* Move the circle when checked */
 .toggle-container input[type="checkbox"]:checked::before {
-  transform: translateX(20px);
+    transform: translateX(20px);
 }
 
-/* Label text beside the toggle (optional) */
+/* Label text beside the toggle */
 .toggle-container label {
-  margin-left: 20px;
-  font-size: 16px;
-  color: white;
+    margin-left: 20px;
+    font-size: 16px;
+    color: white;
 }
 
+/* Juice Image */
 .juice {
     width: 120px;
     height: auto;
     border-radius: 10px;
     right: 0;
-  }
-  
-  /* Hamburger Menu */
-  .hamburger-menu {
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
     position: absolute;
     top: 1rem;
-    right: 1rem; /* Align hamburger menu to the left */
+    right: 1rem;
     z-index: 10;
     cursor: pointer;
-  }
-  
-  .hamburger-icon {
+}
+
+.hamburger-icon {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     width: 30px;
     height: 30px;
-  }
-  
-  .hamburger-icon .dot {
-    width: 6px; /* Small circle size */
+}
+
+.hamburger-icon .dot {
+    width: 6px;
     height: 6px;
-    background-color: white; /* Dots color */
+    background-color: white;
     border-radius: 50%;
     transition: all 0.3s ease;
-  }
-  
-  /* Hamburger menu becomes an "X" */
-  .hamburger-icon.open .dot:nth-child(1) {
+}
+
+.hamburger-icon.open .dot:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
-    width: 30px; /* Transform into a bar for X */
+    width: 30px;
     border-radius: 0;
-  }
-  
-  .hamburger-icon.open .dot:nth-child(2) {
-    opacity: 0; /* Hide middle dot */
-  }
-  
-  .hamburger-icon.open .dot:nth-child(3) {
+}
+
+.hamburger-icon.open .dot:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-icon.open .dot:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-    width: 30px; /* Transform into a bar for X */
+    width: 30px;
     border-radius: 0;
-  }
-  
-  /* Navigation Menu */
-  .nav-menu {
+}
+
+/* Navigation Menu */
+.nav-menu {
     position: fixed;
     top: 0;
     left: 0;
@@ -258,47 +256,47 @@ table {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
-  
-  .nav-menu.visible {
+}
+
+.nav-menu.visible {
     opacity: 1;
     visibility: visible;
-  }
-  
-  .nav-menu ul {
+}
+
+.nav-menu ul {
     list-style: none;
     padding: 0;
     text-align: center;
-  }
-  
-  .nav-menu ul li {
+}
+
+.nav-menu ul li {
     margin: 20px 0;
-  }
-  
-  .nav-menu ul li a {
+}
+
+.nav-menu ul li a {
     text-decoration: none;
     font-size: 2rem;
     color: rgb(0, 0, 0);
     transition: color 0.3s ease;
-  }
-  
-  .nav-menu ul li a:hover {
+}
+
+.nav-menu ul li a:hover {
     color: #03f4fc;
-  }
-  
-  /* Footer */
-  footer {
+}
+
+/* Footer */
+footer {
     color: white;
     text-align: center;
     padding: 1rem;
-    position: relative;  /* Or 'sticky' to stay at the bottom of the page */
-    margin-top: auto;  /* Pushes the footer to the bottom */
-  }
+    position: relative;
+    margin-top: auto;
+}
 
 .ctre {
-  text-align: center;
+    text-align: center;
 }
 
 table {
-  margin: 0 auto; /* Centers the table horizontally */
+    margin: 0 auto; /* Centers the table horizontally */
 }

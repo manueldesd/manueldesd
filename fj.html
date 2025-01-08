@@ -1,70 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fruit Juice</title>
-    <link rel="stylesheet" href="fj.css">
-    <link rel="icon" href="fj.png" type="image/png">
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Juice</title>
+  <link rel="stylesheet" href="fj.css">
+  <link rel="icon" href="fj.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
-       <!-- Hamburger Menu -->
-    <div class="hamburger-menu" onclick="toggleMenu()">
-        <div class="hamburger-icon">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" onclick="toggleMenu()">
+    <div class="hamburger-icon">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
     </div>
+  </div>
 
-    <!-- Navigation Menu -->
-    <div class="nav-menu" id="navMenu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="cc.html">Carrot Cake</a></li>
-        </ul>
-    </div>
-   <div class="space">
-    
-   </div>
-    <div class="headings">
-        <h1>Fruit <br>Juice</h1>
-        <img src="fj.png" alt="juice" class="juice">
-    </div>
+  <!-- Navigation Menu -->
+  <div class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cc.html">Carrot Cake</a></li>
+    </ul>
+  </div>
 
-    <hr class="line">
-    <h2>Cash-Up Tool</h2>
-    <hr class="line">
-    <br>
-    <style>
-        /* Styles specific to the unique table */
-        #unique-table {
-            margin: 0 auto; /* Centers the table horizontally */
-            border-collapse: collapse; /* Optional: For a clean look */
-        }
-    
-        #unique-table td {
-            text-align: right; /* Centers content in cells */
-        }
+  <div class="space"></div>
+  <div class="headings">
+    <h1>Fruit <br>Juice</h1>
+    <img src="fj.png" alt="juice" class="juice">
+  </div>
 
-        #unique-table .t2 {
-           text-align: left;
-        }
-    </style>
-    
+  <hr class="line">
+  <h2>Cash-Up Tool</h2>
+  <hr class="line">
+  <br>
+
   <div class="container">
-   
-
     <!-- Step 1: Float Count -->
     <div class="page active" id="float-count-page">
       <section id="float-count-section">
-       
-
-        <!-- Toggle for enabling/disabling float count -->
         <div class="toggle-container">
           <input type="checkbox" id="float-toggle" checked>
           <label for="float-toggle">Enable Float-In</label>
         </div>
-
         <table>
           <thead>
             <tr>
@@ -83,7 +65,7 @@
     <!-- Step 2: Cash Taken -->
     <div class="page" id="cash-taken-page">
       <section id="cash-taken-section">
-        <h2>Step 2: Cash Taken</h2>
+        <button class="back-page-button" data-target="float-count-page">Back: Float Count</button>
         <table>
           <thead>
             <tr>
@@ -101,7 +83,8 @@
 
     <!-- Step 3: Banking -->
     <div class="page" id="banking-page">
-      <section class="ctre" id="banking-section">
+      <section id="banking-section">
+        <button class="back-page-button" data-target="cash-taken-page">Back: Cash Taken</button>
         <h4>Step 3: Banking</h4>
         <label for="bank-amount">Enter Amount to Bank:</label>
         <input type="number" id="bank-amount" placeholder="0.00">
@@ -136,4 +119,5 @@
 
   <script src="fj.js"></script>
 </body>
+
 </html>
