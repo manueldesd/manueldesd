@@ -13,4 +13,11 @@ function toggleMenu() {
     } else {
         h1.classList.remove('behind');
     }
+
+    // Toggle the "behind" class on the h1 element
+    if (menu.classList.contains('visible')) {
+        scroll_down.classList.add('behind');
+    } else {
+        scroll_down.classList.remove('behind');
+    }
 }

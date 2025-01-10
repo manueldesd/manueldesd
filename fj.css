@@ -3,8 +3,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
 }
   
 body,
@@ -27,7 +27,7 @@ html {
   background: black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  color: white;
+  color: black;
   align-content: center;
 }
 
@@ -36,12 +36,12 @@ h2 {
     font-size: 15px;
     font-stretch: 20%;
     margin: 0;
-    color: white;
+    color: black;
 }
   
 h4 {
     text-align: center;
-    color: white;
+    color: black;
 }
 
 .headings {
@@ -55,13 +55,13 @@ h4 {
 .headings h1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 2.5em;
-    color: white;
+    color: black;
     margin: 0;
 }
 
 h3 {
     text-align: center;
-    color: white;
+    color: black;
 }
 
 input {
@@ -72,8 +72,8 @@ input {
     border-right: none;
     border-bottom: dotted 1px white;
     text-align: center;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
 }
   
 input:focus {
@@ -99,35 +99,40 @@ button:hover {
 }
 
 table {
-    width: 100%;
+    margin: 0 auto; /* Centers the table horizontally */
+    background-color: white; /* Table background is white */
+    width: 80%; /* Adjust table width to 80% */
     border-collapse: collapse;
-    margin-top: 10px;
+    color: black; /* Text color inside the table is black */
+}
+
+th, td {
+    padding: 10px; /* Increase padding for better readability */
+    text-align: center;
+    border: 1px solid #ddd; /* Adds a light border between cells */
 }
 
 th {
     font-weight: bold;
-    color: white; /* Light mode table header text color */
-    padding: 4px;
-    text-align: center;
-    border-top: dotted 1px white;
-    border-bottom: dotted 1px white;
+    background-color: #f4f4f4; /* Light gray background for headers */
 }
 
 td {
-    padding: 4px;
-    text-align: center;
-    color: white; 
+    background-color: white; /* White background for table data */
 }
 
 #results-section {
+    background-color: white;
     text-align: center;
 }
 
 .page {
+    background-color: white;
     display: none;
 }
 
 .page.active {
+    background-color: white;
     display: block;
 }
 
@@ -139,8 +144,6 @@ td {
   justify-content: center; /* Center the buttons */
   gap: 20px; /* Add space between the buttons */
 }
-
-
 
 /* Toggle Slider */
 .toggle-container {
@@ -188,7 +191,7 @@ td {
 .toggle-container label {
     margin-left: 20px;
     font-size: 16px;
-    color: white;
+    color: black;
 }
 
 /* Juice Image */
@@ -286,7 +289,7 @@ td {
 
 /* Footer */
 footer {
-    color: white;
+    color: black;
     text-align: center;
     padding: 1rem;
     position: relative;
@@ -295,8 +298,4 @@ footer {
 
 .ctre {
     text-align: center;
-}
-
-table {
-    margin: 0 auto; /* Centers the table horizontally */
 }

@@ -50,7 +50,7 @@ header {
         border-radius: 50px;
     }
   
-    .scroll-down {
+    .scroll_down {
       align-self: center; /* Center the link horizontally */
       margin-bottom: 20px; /* Add spacing from the bottom */
       color: black;
@@ -140,7 +140,7 @@ footer {
         font-size: 2rem;
     }
 
-    .scroll-down {
+    .scroll_down {
         font-size: 1rem;
     }
 }
@@ -195,7 +195,6 @@ footer {
     left: 0;
     width: 50%;
     height: 100%;
-    border-radius: 10px;
     background-color: rgba(67, 73, 153, 0.6);
     backdrop-filter: blur(10px);
     display: flex;
