@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
     overflow-x: hidden;
-    background-color: black;
+    background-color: white;
 }
 
 header {
@@ -12,7 +12,7 @@ header {
     justify-content: space-between; /* Spread elements vertically */
    /* background: url('landing.jpg') no-repeat center center/cover;*/
     text-align: left;
-    color: white;
+    color: black;
     padding: 0 20px; /* Add horizontal padding */
   
     .content-wrapper {
@@ -29,6 +29,13 @@ header {
         animation: bounce 1s infinite; /* Hop effect only handled by CSS */
         margin-bottom: 20px;
       }
+
+      .hi.behind {
+        z-index: -1; /* Move the element to the back */
+        position: relative; /* Ensure it can be moved behind other elements */
+        transition: z-index 0.3s ease; /* Smooth transition for effect */
+    }
+    
       
       h2 {
         font-size: 2.0rem;
@@ -46,7 +53,7 @@ header {
     .scroll-down {
       align-self: center; /* Center the link horizontally */
       margin-bottom: 20px; /* Add spacing from the bottom */
-      color: white;
+      color: black;
       text-decoration: none;
       font-size: 1.2rem;
       animation: bounce 2s infinite;
@@ -81,7 +88,7 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: black;
     text-align: center;
 }
 
@@ -97,13 +104,13 @@ header {
     text-align: center;
     align-content: center;
     padding: 50px 20px;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 /* line*/
 .line{
-    border-bottom: 1px dotted white;
+    border-bottom: 1px dotted black;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -113,7 +120,7 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: #0078d4;
-    color: white;
+    color: black;
 }
 
 @keyframes bounce {
@@ -142,7 +149,7 @@ footer {
 .hamburger-menu {
     position: absolute;
     top: 1rem;
-    right: 1rem; /* Align hamburger menu to the left */
+    left: 1rem; /* Align hamburger menu to the left */
     z-index: 10;
     cursor: pointer;
 }
@@ -159,7 +166,7 @@ footer {
 .hamburger-icon .dot {
     width: 6px; /* Small circle size */
     height: 6px;
-    background-color: white; /* Dots color */
+    background-color: #1034A6; /* Dots color */
     border-radius: 50%;
     transition: all 0.3s ease;
 }
@@ -186,10 +193,10 @@ footer {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 40%;
     height: 100%;
-    background-color: rgba(250, 250, 250, 0.5);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -229,8 +236,8 @@ button {
     display: inline-block;
     justify-content: center;
     background-color: transparent;
-    border: dotted 1px white;
-    color: white;
+    border: dotted 1px black;
+    color: black;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
