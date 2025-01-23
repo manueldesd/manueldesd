@@ -218,8 +218,10 @@ th {
 
 /* Footer */
 footer {
+    width: 100%;
     text-align: center;
     padding: 1rem;
+    background-color: transparent;
 }
 
 /* Media Queries for Responsiveness */
