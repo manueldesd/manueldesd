@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Juice</title>
+  <link rel="stylesheet" href="fj.css">
+  <link rel="icon" href="fj.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" onclick="toggleMenu()">
+    <div class="hamburger-icon">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+<div class="nav-menu" id="navMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="cc.html">Carrot Cake</a></li>
+  </ul>
+</div>
+
+  <div class="space"></div>
+  <div class="headings">
+    <h1>Fruit <br>Juice</h1>
+    <img src="fj.png" alt="juice" class="juice">
+  </div>
+
+  <hr class="line">
+  <h2>Cash-Up Tool</h2>
+  <hr class="line">
+  <br>
+    <div class="container">
+        <h1>Cash Breakdown</h1>
+
+        <!-- Remaining Cash Table -->
+        <div class="table-container">
+            <h2>float</h2>
+            <table id="remainingTable">
+                <thead>
+                    <tr>
+                        <th>Denomination</th>
+                        <th>QTY</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="line2">
+
+        <!-- Result Section -->
+        <div class="result-container">
+          <h2>banking</h2>
+            <p id="result" class="no-removal">Calculating...</p>
+            <table id="removalTable" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>Denomination</th>
+                        <th>Quantity to Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+
+        <button onclick="window.location.href='fj1.html';">back</button>
+        <button onclick="window.location.href='fj3.html';">next</button>
+    </div>
+    <footer>
+      <p>© 2024 Manuel de Souza-Deacon. All rights reserved.</p>
+    </footer>
+    
+    <script src="fj2.js"></script>
+</body>
+</html>

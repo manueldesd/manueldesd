@@ -1,0 +1,307 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white;
+    /* Background set to white */
+    color: black;
+    /* Text color set to black */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body,
+html {
+    overflow-x: hidden;
+}
+
+.space {
+    height: 15px;
+}
+
+/* Default styles */
+.line {
+    width: 100%;
+    border-bottom: solid 1px white;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    align-content: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 15px;
+    font-stretch: 20%;
+    margin: 0;
+}
+
+h4 {
+    text-align: center;
+}
+
+.headings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding-top: 10px;
+}
+
+.headings h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5em;
+
+    margin: 0;
+}
+
+h3 {
+    text-align: center;
+
+}
+
+input {
+    font-size: medium;
+    width: 80px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: dotted 1px black;
+    text-align: center;
+}
+
+input:focus {
+    border-bottom: dotted 2px orangered;
+    outline: none;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px dotted black;
+}
+
+button:hover {
+    background: white;
+
+}
+
+table {
+    margin: 0 auto;
+    /* Centers the table horizontally */
+    /* Table background is white */
+    width: 100%;
+    border-collapse: collapse;
+    /* Text color inside the table is black */
+}
+
+th,
+td {
+    padding: 10px;
+    /* Increase padding for better readability */
+    text-align: center;
+    border: 1px solid #ddd;
+    /* Adds a light border between cells */
+}
+
+th {
+    font-weight: bold;
+    background-color: #f4f4f4;
+    /* Light gray background for headers */
+}
+
+
+
+#results-section {
+
+    text-align: center;
+}
+
+.page {
+
+    display: none;
+}
+
+.page.active {
+
+    display: block;
+}
+
+/* Navigation Buttons Alignment */
+.navigation {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    /* Use Flexbox for inline button alignment */
+    justify-content: center;
+    /* Center the buttons */
+    gap: 20px;
+    /* Add space between the buttons */
+}
+
+/* Toggle Slider */
+.toggle-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Style for the slider itself */
+.toggle-container input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 50px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Slider circle inside */
+.toggle-container input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+/* Change background color when checked */
+.toggle-container input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+}
+
+/* Move the circle when checked */
+.toggle-container input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+}
+
+/* Label text beside the toggle */
+.toggle-container label {
+    margin-left: 20px;
+    font-size: 16px;
+
+}
+
+/* Juice Image */
+.juice {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    right: 0;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    position: absolute;
+    top: 1rem;
+    left: 1rem; /* Align hamburger menu to the left */
+    z-index: 10;
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.hamburger-icon .dot {
+    width: 6px; /* Small circle size */
+    height: 6px;
+    background-color: black; /* Dots color */
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger menu becomes an "X" */
+.hamburger-icon.open .dot:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+    width: 30px; /* Transform into a bar for X */
+    border-radius: 0;
+}
+
+.hamburger-icon.open .dot:nth-child(2) {
+    opacity: 0; /* Hide middle dot */
+}
+
+.hamburger-icon.open .dot:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+    width: 30px; /* Transform into a bar for X */
+    border-radius: 0;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-menu.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.nav-menu ul li {
+    margin: 20px 0;
+}
+
+.nav-menu ul li a {
+    text-decoration: none;
+    font-size: 2rem;
+    color: rgb(0, 0, 0);
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a:hover {
+    color: #03f4fc;
+}
+
+/* Footer */
+footer {
+
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    margin-top: auto;
+}
+
+.ctre {
+    text-align: center;
+}

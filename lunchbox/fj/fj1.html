@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Juice</title>
+  <link rel="stylesheet" href="fj.css">
+  <link rel="icon" href="fj.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="header">
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <div class="hamburger-icon">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cc.html">Carrot Cake</a></li>
+      </ul>
+    </div>
+  </div>
+  
+
+  <div class="space"></div>
+  <div class="headings">
+    <h1>Fruit <br>Juice</h1>
+    <img src="fj.png" alt="juice" class="juice">
+  </div>
+
+  <hr class="line">
+  <h2>Cash-Up Tool</h2>
+  <hr class="line">
+  <br>
+    <div class="container">
+      <h1>Cash Taken</h1>
+        <form id="cashForm">
+            <table>
+                <tr>
+                    <th>Denomination</th>
+                    <th>Count</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>R200</td>
+                    <td><input type="number" id="input1" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total1">0</td>
+                </tr>
+                <tr>
+                    <td>R100</td>
+                    <td><input type="number" id="input2" class="input-field" placeholder="" oninput="calculateTotal()"></td>
+                    <td id="total2">0</td>
+                </tr>
+                <tr>
+                    <td>R50</td>
+                    <td><input type="number" id="input3" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total3">0</td>
+                </tr>
+                <tr>
+                    <td>R20</td>
+                    <td><input type="number" id="input4" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total4">0</td>
+                </tr>
+                <tr>
+                    <td>R10</td>
+                    <td><input type="number" id="input5" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total5">0</td>
+                </tr>
+                <tr>
+                    <td>R5</td>
+                    <td><input type="number" id="input6" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total6">0</td>
+                </tr>
+                <tr>
+                    <td>R2</td>
+                    <td><input type="number" id="input7" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total7">0</td>
+                </tr>
+                <tr>
+                    <td>R1</td>
+                    <td><input type="number" id="input8" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total8">0</td>
+                </tr>
+                <tr>
+                    <td>50c</td>
+                    <td><input type="number" id="input9" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total9">0</td>
+                </tr>
+                <tr>
+                    <td>20c</td>
+                    <td><input type="number" id="input10" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total10">0</td>
+                </tr>
+                <tr>
+                    <td>10c</td>
+                    <td><input type="number" id="input11" class="input-field" oninput="calculateTotal()"></td>
+                    <td id="total11">0</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td colspan="2" id="grandTotal">0</td>
+                </tr>
+            </table>
+        </form>
+        <button onclick="clearInputs()">Clear Inputs</button>
+        <button onclick="window.location.href='fj2.html';">next</button>
+
+    </div>
+
+    <footer>
+      <p>© 2024 Manuel de Souza-Deacon. All rights reserved.</p>
+    </footer>
+    <script src="fj1.js"></script>
+</body>
+</html>
