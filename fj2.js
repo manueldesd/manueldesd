@@ -1,8 +1,4 @@
-window.onload = function () {
-  const grandTotal = parseFloat(localStorage.getItem('grandTotal')) || 0;
-  const targetAmount = 1000.00;
-  let amountToRemove = grandTotal - targetAmount;
-
+function calculateTotals() {
   const values = {
     1: 200,
     2: 100,
@@ -17,115 +13,97 @@ window.onload = function () {
     11: 0.1
   };
 
-  let denominationsToRemove = {};
-  let remainingCash = {};
+  let total = 0;
+  let breakdown = [];
+  let floatAmount = 1000;
 
-  function calculateDenominationsToRemove() {
-    let amountLeft = amountToRemove;
-
-    for (let i = 1; i <= 11; i++) {
-      const storedCount = parseFloat(localStorage.getItem(`input${i}`)) || 0;
-      const denominationValue = values[i];
-
-      if (storedCount > 0) {
-        remainingCash[i] = storedCount;
-        const quantityToRemove = Math.floor(amountLeft / denominationValue);
-
-        if (quantityToRemove > 0) {
-          const actualRemove = Math.min(quantityToRemove, storedCount);
-          denominationsToRemove[i] = actualRemove;
-          amountLeft -= actualRemove * denominationValue;
-          remainingCash[i] -= actualRemove;
-        }
-      }
-
-      if (amountLeft <= 0) break;
-    }
-
-    if (amountLeft <= 0.1 && remainingCash[11] > 0) {
-      denominationsToRemove[11] = remainingCash[11];
-      remainingCash[11] = 0;
-    }
-
-    return amountLeft;
-  }
-
-  const remainingAmount = calculateDenominationsToRemove();
-
-  const resultText = document.getElementById('result');
-  const table = document.getElementById('removalTable');
-  const tableBody = table.querySelector('tbody');
-  const remainingTable = document.getElementById('remainingTable');
-  const remainingTableBody = remainingTable.querySelector('tbody');
-
-  // Add table headers dynamically
-  const tableHead = table.querySelector('thead');
-  const remainingTableHead = remainingTable.querySelector('thead');
-  tableHead.innerHTML = '<tr><th>Denom</th><th>QTY</th><th>Total</th></tr>';
-  remainingTableHead.innerHTML = '<tr><th>Denom</th><th>QTY</th><th>Total</th></tr>';
-
-  tableBody.innerHTML = '';
-  remainingTableBody.innerHTML = '';
-
-  let removalGrandTotal = 0;
-  let remainingGrandTotal = 0;
-
+  // Calculate totals for each denomination
   for (let i = 1; i <= 11; i++) {
-    if (remainingCash[i] > 0) {
-      const denominationName = getDenominationName(i);
-      const quantityRemaining = remainingCash[i];
-      const subtotal = (quantityRemaining * values[i]).toFixed(2);
+    const inputField = document.getElementById(`input${i}`);
+    let count = inputField.value ? parseFloat(inputField.value) : 0; // Default to 0 if empty
 
-      remainingGrandTotal += parseFloat(subtotal);
+    const totalForDenom = count * values[i];
+    total += totalForDenom;
 
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${denominationName}</td><td>${quantityRemaining}</td><td>R${subtotal}</td>`;
-      remainingTableBody.appendChild(row);
-    }
-
-    if (denominationsToRemove[i]) {
-      const denominationName = getDenominationName(i);
-      const quantityToRemove = denominationsToRemove[i];
-      const subtotal = (quantityToRemove * values[i]).toFixed(2);
-
-      removalGrandTotal += parseFloat(subtotal);
-
-      const row = document.createElement('tr');
-      row.innerHTML = `<td>${denominationName}</td><td>${quantityToRemove}</td><td>R${subtotal}</td>`;
-      tableBody.appendChild(row);
+    if (count > 0) {
+      breakdown.push({ denom: values[i], count });
     }
   }
 
-  if (remainingAmount <= 0) {
-    resultText.textContent = "Successfully reduced to R1000!";
-    table.style.display = 'none';
-  } else {
-    resultText.textContent = "";
-    table.style.display = 'table';
+  // Calculate float breakdown
+  let floatBreakdown = [];
+  let remainingFloat = floatAmount;
+
+  for (let i = breakdown.length - 1; i >= 0 && remainingFloat > 0; i--) {
+    const { denom, count } = breakdown[i];
+    const maxRemove = Math.min(remainingFloat / denom, count);
+    const removeCount = Math.floor(maxRemove);
+
+    if (removeCount > 0) {
+      floatBreakdown.push({ denom, count: removeCount });
+      remainingFloat -= removeCount * denom;
+    }
   }
 
-  const removalTotalRow = document.createElement('tr');
-  removalTotalRow.innerHTML = `<td><strong>Grand Total</strong></td><td></td><td><strong>R${removalGrandTotal.toFixed(2)}</strong></td>`;
-  tableBody.appendChild(removalTotalRow);
+  // Update the float table
+  const floatTableBody = document.querySelector("#floatTable tbody");
+  floatTableBody.innerHTML = "";
+  floatBreakdown.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+            <td>R${item.denom.toFixed(2)}</td>
+            <td>${item.count}</td>
+            <td>R${(item.denom * item.count).toFixed(2)}</td>
+        `;
+    floatTableBody.appendChild(row);
+  });
 
-  const remainingTotalRow = document.createElement('tr');
-  remainingTotalRow.innerHTML = `<td><strong>Grand Total</strong></td><td></td><td><strong>R${remainingGrandTotal.toFixed(2)}</strong></td>`;
-  remainingTableBody.appendChild(remainingTotalRow);
-};
+  // Calculate remaining banking amount and breakdown
+  let remainingBanking = total - floatAmount;
+  let bankingBreakdown = [];
+  breakdown.forEach(item => {
+    const floatCount = floatBreakdown.find(f => f.denom === item.denom)?.count || 0;
+    const remainingCount = item.count - floatCount;
+    if (remainingCount > 0) {
+      bankingBreakdown.push({ denom: item.denom, count: remainingCount });
+    }
+  });
 
-function getDenominationName(index) {
-  switch (index) {
-    case 1: return "R200";
-    case 2: return "R100";
-    case 3: return "R50";
-    case 4: return "R20";
-    case 5: return "R10";
-    case 6: return "R5";
-    case 7: return "R2";
-    case 8: return "R1";
-    case 9: return "50c";
-    case 10: return "20c";
-    case 11: return "10c";
-    default: return "";
-  }
+  // Update the banking table
+  const bankingTableBody = document.querySelector("#bankingTable tbody");
+  bankingTableBody.innerHTML = "";
+  bankingBreakdown.forEach(item => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+            <td>R${item.denom.toFixed(2)}</td>
+            <td>${item.count}</td>
+            <td>R${(item.denom * item.count).toFixed(2)}</td>
+        `;
+    bankingTableBody.appendChild(row);
+  });
+
+  // Display the results
+  document.getElementById("result").textContent = `Remaining for Banking: R${remainingBanking.toFixed(2)}`;
 }
+
+// Restore inputs and calculations on page load
+function restoreInputs() {
+  for (let i = 1; i <= 11; i++) {
+    const inputField = document.getElementById(`input${i}`);
+    const storedValue = localStorage.getItem(`input${i}`);
+    inputField.value = storedValue ? parseFloat(storedValue) : '';
+  }
+  calculateTotals();
+}
+
+// Clear all inputs and localStorage
+function clearInputs() {
+  for (let i = 1; i <= 11; i++) {
+    document.getElementById(`input${i}`).value = '';
+    localStorage.removeItem(`input${i}`);
+  }
+  calculateTotals();
+}
+
+// Initialize on page load
+window.onload = restoreInputs;
