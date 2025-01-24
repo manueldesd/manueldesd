@@ -26,6 +26,7 @@ function releaseWakeLock() {
 window.addEventListener('load', requestWakeLock);
 window.addEventListener('beforeunload', releaseWakeLock);
 
+// Calculate the total cash based on denominations and input values
 function calculateTotal() {
     // Denomination and input mapping
     const values = {
@@ -120,12 +121,12 @@ function addInputEventListeners() {
     for (let i = 1; i <= 11; i++) {
         const inputField = document.getElementById(`input${i}`);
         inputField.addEventListener('click', () => {
-            inputField.select();
+            inputField.select(); // Select all text when clicked
         });
     }
 }
 
-// Restore inputs on page load and add event listeners
+// Restore inputs and set event listeners on page load
 window.onload = () => {
     restoreInputs();
     addInputEventListeners();
