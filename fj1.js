@@ -115,5 +115,18 @@ function clearInputs() {
     localStorage.removeItem('grandTotal');
 }
 
-// Restore inputs on page load
-window.onload = restoreInputs;
+// Add event listener to select all text when input is clicked
+function addInputEventListeners() {
+    for (let i = 1; i <= 11; i++) {
+        const inputField = document.getElementById(`input${i}`);
+        inputField.addEventListener('click', () => {
+            inputField.select();
+        });
+    }
+}
+
+// Restore inputs on page load and add event listeners
+window.onload = () => {
+    restoreInputs();
+    addInputEventListeners();
+};
