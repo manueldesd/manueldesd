@@ -1,3 +1,31 @@
+let wakeLock = null;
+
+// Request wake lock
+async function requestWakeLock() {
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Screen Wake Lock is active');
+        wakeLock.addEventListener('release', () => {
+            console.log('Screen Wake Lock has been released');
+        });
+    } catch (err) {
+        console.error(`Failed to activate screen wake lock: ${err.message}`);
+    }
+}
+
+// Release wake lock
+function releaseWakeLock() {
+    if (wakeLock !== null) {
+        wakeLock.release();
+        wakeLock = null;
+        console.log('Screen Wake Lock has been deactivated');
+    }
+}
+
+// Manage wake lock on load and unload
+window.addEventListener('load', requestWakeLock);
+window.addEventListener('beforeunload', releaseWakeLock);
+
 function calculateTotal() {
     // Denomination and input mapping
     const values = {
