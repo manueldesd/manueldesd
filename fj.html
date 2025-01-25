@@ -5,147 +5,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fruit Juice</title>
-  <link rel="stylesheet" href="fj.css">
+  <link rel="stylesheet" href="sc.css">
+  <link rel="stylesheet" href="sc1.css">
   <link rel="icon" href="fj.png" type="image/png">
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <div class="header">
-    <!-- Hamburger Menu -->
-    <div class="hamburger-menu" onclick="toggleMenu()">
-      <div class="hamburger-icon">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-    </div>
-
-    <!-- Navigation Menu -->
-    <div class="nav-menu" id="navMenu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="cc.html">Carrot Cake</a></li>
-      </ul>
+    <div id="popupKeyboard" class="keyboard">
+    <div class="keys">
+      <button class="key">1</button>
+      <button class="key">2</button>
+      <button class="key">3</button>
+      <button class="key">4</button>
+      <button class="key">5</button>
+      <button class="key">6</button>
+      <button class="key">7</button>
+      <button class="key">8</button>
+      <button class="key">9</button>
+      <button class="key">0</button>
+      <button class="key" id="backspace">⌫</button>
+      <button class="key" id="tab">Tab</button>
     </div>
   </div>
-
-  <div class="space"></div>
-  <div class="headings">
-    <h1>Fruit <br>Juice</h1>
-    <img src="fj.png" alt="juice" class="juice">
-  </div>
-
-  <hr class="line">
-  <h2>Cash-Up Tool</h2>
-  <hr class="line">
-  <br>
   <div class="container">
-    <h1>Cash Taken</h1>
-    <form id="cashForm">
-      <table>
+    <h1>Denomination Calculator</h1>
+    <table>
+      <thead>
         <tr>
           <th>Denomination</th>
-          <th>Count</th>
-          <th>Total</th>
+          <th>QTY</th>
+          <th>Amount</th>
         </tr>
+      </thead>
+      <tbody id="denomination-table">
         <tr>
-          <td>R200</td>
-          <td><input type="number" id="input1" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total1">0</td>
+            <td>R200</td>
+            <td><input type="number" id="input200"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount200">0</td>
+          </tr>
+          <tr>
+            <td>R100</td>
+            <td><input type="number" id="input100"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount100">0</td>
+          </tr>
+          <tr>
+            <td>R50</td>
+            <td><input type="number" id="input50"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount50">0</td>
+          </tr>
+          <tr>
+            <td>R20</td>
+            <td><input type="number" id="input20"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount20">0</td>
+          </tr>
+          <tr>
+            <td>R10</td>
+            <td><input type="number" id="input10"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount10">0</td>
+          </tr>
+          <tr>
+            <td>R5</td>
+            <td><input type="number" id="input5"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount5">0</td>
+          </tr>
+          <tr>
+            <td>R2</td>
+            <td><input type="number" id="input2"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount2">0</td>
+          </tr>
+          <tr>
+            <td>R1</td>
+            <td><input type="number" id="input1"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount1">0</td>
+          </tr>
+          <tr>
+            <td>50c</td>
+            <td><input type="number" id="input0.5"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount0.5">0</td>
+          </tr>
+          <tr>
+            <td>20c</td>
+            <td><input type="number" id="input0.2"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount0.2">0</td>
+          </tr>
+          <tr>
+            <td>10c</td>
+            <td><input type="number" id="input0.1"  min="0" placeholder="" class="popup-input" /></td>
+            <td id="amount0.1"></td>
+          </tr>
+          
+          <td colspan="2">Total</td>
+          <td id="total">0</td>
         </tr>
-        <tr>
-          <td>R100</td>
-          <td><input type="number" id="input2" class="input-field" placeholder="" oninput="calculateTotal()"></td>
-          <td id="total2">0</td>
-        </tr>
-        <tr>
-          <td>R50</td>
-          <td><input type="number" id="input3" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total3">0</td>
-        </tr>
-        <tr>
-          <td>R20</td>
-          <td><input type="number" id="input4" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total4">0</td>
-        </tr>
-        <tr>
-          <td>R10</td>
-          <td><input type="number" id="input5" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total5">0</td>
-        </tr>
-        <tr>
-          <td>R5</td>
-          <td><input type="number" id="input6" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total6">0</td>
-        </tr>
-        <tr>
-          <td>R2</td>
-          <td><input type="number" id="input7" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total7">0</td>
-        </tr>
-        <tr>
-          <td>R1</td>
-          <td><input type="number" id="input8" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total8">0</td>
-        </tr>
-        <tr>
-          <td>50c</td>
-          <td><input type="number" id="input9" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total9">0</td>
-        </tr>
-        <tr>
-          <td>20c</td>
-          <td><input type="number" id="input10" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total10">0</td>
-        </tr>
-        <tr>
-          <td>10c</td>
-          <td><input type="number" id="input11" class="input-field" oninput="calculateTotal()"></td>
-          <td id="total11">0</td>
-        </tr>
-        <tr>
-          <td><strong>Total</strong></td>
-          <td colspan="2" id="grandTotal">0</td>
-        </tr>
-      </table>
-    </form>
+      </tbody>
+    </table>
   </div>
-  <div class="buttons">
-    <button onclick="clearInputs()">clear</button>
-    <button onclick="window.location.href='fj2.html';">next</button>
-  </div>
-  <footer>
-    <p>© 2024 Manuel de Souza-Deacon. All rights reserved.</p>
-  </footer>
-  <script>
-    let wakeLock = null;
 
-    // Request wake lock
-    async function requestWakeLock() {
-      try {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log('Screen Wake Lock is active');
-        wakeLock.addEventListener('release', () => {
-          console.log('Screen Wake Lock has been released');
-        });
-      } catch (err) {
-        console.error(`Failed to activate screen wake lock: ${err.message}`);
-      }
-    }
-
-    // Release wake lock
-    function releaseWakeLock() {
-      if (wakeLock !== null) {
-        wakeLock.release();
-        wakeLock = null;
-        console.log('Screen Wake Lock has been deactivated');
-      }
-    }
-
-    // Manage wake lock on load and unload
-    window.addEventListener('load', requestWakeLock);
-    window.addEventListener('beforeunload', releaseWakeLock);
-  </script>
-  <script src="fj1.js"></script>
+  <script src="sc.js"></script>
+  <script src="sc1.js"></script>
 </body>
 </html>
