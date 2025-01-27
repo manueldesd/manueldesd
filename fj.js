@@ -189,25 +189,27 @@ document.addEventListener("DOMContentLoaded", () => {
   calculateTotals();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const navMenu = document.getElementById('navMenu');
-  const toggleContainer = document.querySelector('.toggle-container');
-  const juiceImage = document.querySelector('.headings .juice');
+function toggleMenu() {
+  const menu = document.getElementById('navMenu');
+  const hamburgerIcon = document.querySelector('.hamburger-icon');
+  const h1 = document.querySelector('.hi');
 
-  // Function to toggle the menu visibility
-  function toggleMenu() {
-    navMenu.classList.toggle('visible');
+  // Toggle visibility of the navigation menu
+  menu.classList.toggle('visible');
+  hamburgerIcon.classList.toggle('open');
 
-    // Hide the toggle switch and image when the menu is visible
-    if (navMenu.classList.contains('visible')) {
-      toggleContainer.style.display = 'none';  // Hide the toggle
-      juiceImage.style.display = 'none';       // Hide the image
-    } else {
-      toggleContainer.style.display = 'flex';  // Show the toggle
-      juiceImage.style.display = 'block';      // Show the image
-    }
+  // Toggle the "behind" class on the h1 element
+  if (menu.classList.contains('visible')) {
+      h1.classList.add('behind');
+  } else {
+      h1.classList.remove('behind');
   }
 
-  // Attach the toggleMenu function to the hamburger menu click event
-  document.querySelector('.hamburger-menu').addEventListener('click', toggleMenu);
-});
+  // Toggle the "behind" class on the h1 element
+  if (menu.classList.contains('visible')) {
+      scroll_down.classList.add('behind');
+  } else {
+      scroll_down.classList.remove('behind');
+  }
+}
+

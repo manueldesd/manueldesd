@@ -1,0 +1,84 @@
+/* General Styles (These apply to all screen sizes) */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container with flexible layout */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Flexbox layout for responsive design */
+.header,
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+.footer {
+    background-color: #222;
+    color: white;
+    padding: 10px;
+}
+
+/* Example of flexible images */
+img {
+    width: 100%;
+    height: auto;
+}
+
+/* Main content styling */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-content .section {
+    flex: 1 1 45%;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+}
+
+/* Media Queries for different screen sizes */
+
+/* Small screens (Phones, Tablets) */
+@media (max-width: 768px) {
+    .main-content .section {
+        flex: 1 1 100%;
+    }
+
+    .header,
+    .footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Larger screens (Laptops, Desktops) */
+@media (min-width: 769px) {
+    .main-content .section {
+        flex: 1 1 30%;
+    }
+}
+
+/* Extra large screens (Large Desktops) */
+@media (min-width: 1200px) {
+    .container {
+        padding: 40px;
+    }
+}
