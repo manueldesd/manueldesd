@@ -6,13 +6,12 @@ body {
     /* Text color set to black */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 body,
 html {
     overflow-x: hidden;
+
 }
 
 .space {
@@ -32,7 +31,7 @@ html {
     padding: 0 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    align-content: center;
+    
 }
 
 h2 {
@@ -47,18 +46,37 @@ h4 {
 }
 
 .headings {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: transparent;
-    padding-top: 10px;
+
+
 }
 
-.headings h1 {
+.container h1 {
     font-family: 'Courier New', Courier, monospace;
     font-size: 2.5em;
-
+    color: white;
     margin: 0;
+    position: absolute;
+    left: 0;
+    top: 5%;
+}
+
+h5 {
+    text-align: left;
+    top: 10px;  /* Adjust this to position it where you want */
+    left: 10%; /* Adjust this to position it where you want */
+    font-size: 2.5em;
+    z-index: 9999; /* Ensure it's on top of everything else */
+    color: black; /* You can adjust the color if needed */
+}
+  
+.juice {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+    top: 5%;
 }
 
 h3 {
@@ -77,7 +95,6 @@ input {
 }
 
 input:focus {
-    border-bottom: dotted 2px orangered;
     outline: none;
 }
 
@@ -99,25 +116,22 @@ button:hover {
 
 table {
     margin: 0 auto;
-    /* Centers the table horizontally */
-    /* Table background is white */
     width: 100%;
     border-collapse: collapse;
-    /* Text color inside the table is black */
+    
 }
 
 th,
 td {
+    width: 33.3%;
     padding: 10px;
     /* Increase padding for better readability */
     text-align: center;
-    border: 1px solid #ddd;
-    /* Adds a light border between cells */
 }
 
 th {
     font-weight: bold;
-    background-color: #f4f4f4;
+    background-color: rgba(244, 244, 244, 0.445);
     /* Light gray background for headers */
 }
 
@@ -162,11 +176,13 @@ th {
     appearance: none;
     width: 50px;
     height: 30px;
-    background-color: #ccc;
-    border-radius: 50px;
+    background-color: #dd6c6c9f;
     position: relative;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
 }
 
 /* Slider circle inside */
@@ -177,14 +193,16 @@ th {
     left: 3px;
     width: 24px;
     height: 24px;
-
-    border-radius: 50%;
+    background-color: rgba(255, 245, 245, 0.671);
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     transition: transform 0.3s ease;
 }
 
 /* Change background color when checked */
 .toggle-container input[type="checkbox"]:checked {
-    background-color: #4CAF50;
+    background-color: rgba(109, 204, 221, 0.623);
+
 }
 
 /* Move the circle when checked */
@@ -199,20 +217,14 @@ th {
 
 }
 
-/* Juice Image */
-.juice {
-    width: 120px;
-    height: auto;
-    border-radius: 10px;
-    right: 0;
-}
 
 /* Hamburger Menu */
 .hamburger-menu {
     position: absolute;
     top: 1rem;
-    left: 1rem; /* Align hamburger menu to the left */
-    z-index: 10;
+    left: 1rem;
+    /* Align hamburger menu to the left */
+    z-index: 1;
     cursor: pointer;
 }
 
@@ -226,9 +238,11 @@ th {
 }
 
 .hamburger-icon .dot {
-    width: 6px; /* Small circle size */
+    width: 6px;
+    /* Small circle size */
     height: 6px;
-    background-color: black; /* Dots color */
+    background-color: black;
+    /* Dots color */
     border-radius: 50%;
     transition: all 0.3s ease;
 }
@@ -236,29 +250,31 @@ th {
 /* Hamburger menu becomes an "X" */
 .hamburger-icon.open .dot:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
-    width: 30px; /* Transform into a bar for X */
+    width: 30px;
+    /* Transform into a bar for X */
     border-radius: 0;
 }
 
 .hamburger-icon.open .dot:nth-child(2) {
-    opacity: 0; /* Hide middle dot */
+    opacity: 0;
+    /* Hide middle dot */
 }
 
 .hamburger-icon.open .dot:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-    width: 30px; /* Transform into a bar for X */
+    width: 30px;
+    /* Transform into a bar for X */
     border-radius: 0;
 }
 
 /* Navigation Menu */
 .nav-menu {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 50%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    background-color: rgb(122, 122, 122);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -292,6 +308,23 @@ th {
 .nav-menu ul li a:hover {
     color: #03f4fc;
 }
+.hidden {
+    display: none;
+}
+  
+.toggle-container {
+    display: flex; /* Ensure the toggle is visible by default */
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+
+/* Hide the toggle switch when the nav menu is visible */
+.nav-menu.visible ~ .toggle-container {
+    display: none;
+}
+
+
 
 /* Footer */
 footer {
@@ -304,4 +337,27 @@ footer {
 
 .ctre {
     text-align: center;
+}
+
+#float-count-section {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+#float-count-section.collapsed {
+    max-height: 0;
+}
+
+#float-count-section.expanded {
+    max-height: 1000px;
+    /* Adjust this value depending on content size */
+}
+
+.toggle-container {
+    margin-bottom: 10px;
+}
+
+#float-toggle {
+    display: inline-block;
+    margin-right: 10px;
 }

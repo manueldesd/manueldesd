@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrot Cake</title>
+    <link rel="stylesheet" href="cc.css">
+    <link rel="icon" href="fj.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="hamburger-icon">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <div class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fj.html">Fruit Juice</a></li>
+            <li><a href="cc.html">Carrot Cake</a></li>
+        </ul>
+    </div>
+
+    <br>
+    <div class="container">
+        <h1>Carrot <br>Cake</h1>
+        <img src="carrot.png" alt="juice" class="juice">
+    </div>
+
+    <hr class="line">
+    <h2>Price Tag Generator</h2>
+    <hr class="line">
+    <br>  
+    <div class="gen">
+        <input type="file" id="imageInput" multiple accept="image/*">
+        <br>
+        <div id="imagePreviews"></div>
+        <button id="generatePDF" disabled>Generate PDF</button>
+        <select id="sizeSelector">
+            <option value="default">Shelves size</option>
+            <option value="fixed">Display Size</option>
+        </select>
+    </div>
+     <hr class="line">
+     <br>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Manuel de Souza-Deacon - All Rights Reserved</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="cc.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('./service-worker.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

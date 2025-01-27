@@ -1,0 +1,232 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    background-color: black;
+  }
+  
+  body,
+  html {
+    overflow-x: hidden;
+  }
+  
+  .space {
+    height: 15px;
+  }
+  
+.line {
+  width: 100%;
+  border-bottom: solid 1px white;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  button {
+    background-color: transparent;
+    color: white;
+    border: transparent;
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+  
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .button:active {
+    background-color: white;
+    color: black;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 15px;
+    font-stretch: 20%;
+    margin: 0;
+    color: white;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding-top: 10px;
+  }
+  
+  .container h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.5em;
+    color: white;
+    margin: 0;
+  }
+  
+  .juice {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    right: 0;
+  }
+
+/* Hamburger Menu */
+.hamburger-menu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.hamburger-icon .dot {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger menu becomes an "X" */
+.hamburger-icon.open .dot:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+  width: 30px;
+  border-radius: 0;
+}
+
+.hamburger-icon.open .dot:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open .dot:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+  width: 30px;
+  border-radius: 0;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-menu.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.nav-menu ul li {
+  margin: 20px 0;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.nav-menu ul li a:hover {
+  color: #03f4fc;
+}
+
+/* Footer */
+footer {
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* Container for Image Previews */
+.container_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  width: 80%; /* Reduced width for better responsiveness */
+  max-width: 600px; /* Limit width */
+  margin: 20px auto; /* Centered horizontally */
+  padding-top: 20px;
+}
+
+#imagePreviews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#imagePreviews img {
+  margin: 10px;
+  width: 80px; /* Increased image size for better visibility */
+  height: 80px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners for images */
+  transition: transform 0.3s ease;
+}
+
+#imagePreviews img:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Delete Button */
+button.delete-btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+button.delete-btn:hover {
+  color: red;
+}
+
+select {
+  margin-bottom: 20px;
+}
+
+  .gen {
+    display: colmn;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    background-color: transparent;
+    padding-top: 10px;
+  }
