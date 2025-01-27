@@ -190,12 +190,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleMenu() {
-  const navMenu = document.getElementById('navMenu');
+  const menu = document.getElementById('navMenu');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
+  const h1 = document.querySelector('.hi');
 
-  // Toggle visibility of the nav menu
-  navMenu.classList.toggle('visible');
-
-  // Toggle the hamburger icon's open state
+  // Toggle visibility of the navigation menu
+  menu.classList.toggle('visible');
   hamburgerIcon.classList.toggle('open');
+
+  // Toggle the "behind" class on the h1 element
+  if (menu.classList.contains('visible')) {
+      h1.classList.add('behind');
+  } else {
+      h1.classList.remove('behind');
+  }
+
+  // Toggle the "behind" class on the h1 element
+  if (menu.classList.contains('visible')) {
+      scroll_down.classList.add('behind');
+  } else {
+      scroll_down.classList.remove('behind');
+  }
 }
+

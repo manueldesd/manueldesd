@@ -1,76 +1,137 @@
-/* General Styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Courier New', Courier, monospace;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+/* General Container */
+.container {
+    width: 65%;
+    height: 65%;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    border-radius: 8px;
+    align-content: center;
+
 }
 
-.receipt {
-    width: 90%;
-    max-width: 400px;
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+/* Header Styles */
+header {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    padding: 5%;
+    text-align: center;
+    
+   
+}
+
+h1 {
+    position: absolute;
+    right: 5%;
+    top: 0;
+    font-size: 2.5rem;
+    color: black;
+    padding-left: 1%;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-stretch: 20%;
+    margin: 0;
+}
+
+h3, h4 {
     text-align: center;
 }
 
-/* Header */
-header {
-    margin-bottom: 20px;
+/* Juice Image */
+.juice {
+    position: absolute;
+    top: 2%;
+    width: 120px; /* Default width for larger screens */
+    height: auto;
+    border-radius: 10px;
+    left: 3%;
 }
 
-header h1 {
-    font-size: 1.5rem;
-    margin: 0;
-    text-transform: uppercase;
+@media (max-width: 768px) {
+    .juice,h1 {
+        width: 15%; /* Smaller width for tablets */
+        font-family: 10%;
+    }
+    .header {
+        width: 10%;
+        height: 20%;
+    }
+
 }
 
-header p {
-    font-size: 1rem;
-    margin: 5px 0;
-    color: #555;
+@media (max-width: 480px) {
+    .juice,h1 {
+        width: 25%; /* Smaller width for mobile devices */
+    }
+    .header {
+        width: 10%;
+        height: 20%;
+    }
 }
 
-/* Content Section */
-.static-content h2 {
-    font-size: 1.2rem;
-    margin: 10px 0;
+
+
+
+/* Input Field */
+input {
+    font-size: medium;
+    width: 80px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: dotted 1px black;
+    text-align: center;
 }
 
-.line {
-    border-top: 1px dashed black;
-    margin: 10px 0;
+input:focus {
+    outline: none;
 }
 
-.items {
-    list-style: none;
-    padding: 0;
-    text-align: left;
+/* Buttons */
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px dotted black;
 }
 
-.items li {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
-    font-size: 1rem;
+button:hover {
+    background: white;
 }
 
-.total {
-    font-size: 1.2rem;
-    margin: 20px 0;
+/* Tables */
+table {
+    margin: 0 auto; /* Centers the table horizontally */
+    width: 100%;
+    border-collapse: collapse; /* Prevents table cells from having spaces between them */
+    
+}
+
+th,
+td {
+    width: 33.3%;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
     font-weight: bold;
+    background-color: #f4f4f4; /* Light gray background for headers */
+    
 }
 
-/* Footer */
-footer {
-    margin-top: 20px;
-    font-size: 0.9rem;
-    color: #555;
+/* Line Separators */
+.line {
+    border: none;
 }

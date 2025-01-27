@@ -6,13 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fruit Juice</title>
   <link rel="stylesheet" href="fj.css">
-  <link rel="stylesheet" href="switch.css">
-  <link rel="icon" href="fj.png" type="image/png">
+  <link rel="stylesheet" href="screen.css">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="icon" href="plutus.png" type="image/png">
   <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
-  <!-- Hamburger Menu -->
+  
+  <header>
+    <nav>
+      <h1>Plutus</h1>
+      <img src="plutus.png" alt="juice" class="juice">
+      <br>
+    </nav>
+    <!-- Hamburger Menu -->
   <div class="hamburger-menu" onclick="toggleMenu()">
     <div class="hamburger-icon">
       <div class="dot"></div>
@@ -22,33 +29,23 @@
   </div>
 
   <!-- Navigation Menu -->
-<div class="nav-menu" id="navMenu">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="cc.html">Carrot Cake</a></li>
-  </ul>
-</div>
-
-  <div class="space"></div>
-  <div class="headings">
-    <h1>Fruit <br>Juice</h1>
-    <img src="fj.png" alt="juice" class="juice">
+  <div class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cc.html">Carrot Cake</a></li>
+    </ul>
   </div>
-
-  <hr class="line">
-  <h2>Cash-Up Tool</h2>
-  <hr class="line">
-  <br>
-
+</header>
+<br>
+<br> 
   <div class="container">
     <!-- Step 1: Float Count -->
-  
     <div class="page active" id="float-count-page">
+      <div class="toggle-container">
+        <input type="checkbox" id="float-toggle" checked>
+        <label for="float-toggle">Enable Float-In</label>
+      </div>
       <section id="float-count-section">
-        <div class="toggle-container">
-          <input type="checkbox" id="float-toggle" checked>
-          <label for="float-toggle">Enable Float-In</label>
-        </div>
         <table>
           <thead>
             <tr>
@@ -60,8 +57,8 @@
           <tbody id="float-rows"></tbody>
         </table>
         <p>Total Float-In: R<span id="total-float">0.00</span></p>
-        <button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button>
       </section>
+      <button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button>
     </div>
 
     <!-- Step 2: Cash Taken -->
@@ -118,12 +115,36 @@
       </section>
     </div>
   </div>
-  
-    <footer>
+
+  <footer>
     <p>© 2024 Manuel de Souza-Deacon. All rights reserved.</p>
   </footer>
 
   <script src="fj.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const floatToggle = document.getElementById("float-toggle");
+      const floatCountSection = document.getElementById("float-count-section");
+
+      // Function to handle float section expand/collapse
+      floatToggle.addEventListener("change", () => {
+        if (floatToggle.checked) {
+          floatCountSection.classList.remove("collapsed");
+          floatCountSection.classList.add("expanded");
+        } else {
+          floatCountSection.classList.remove("expanded");
+          floatCountSection.classList.add("collapsed");
+        }
+      });
+
+      // Initial state based on the checkbox
+      if (floatToggle.checked) {
+        floatCountSection.classList.add("expanded");
+      } else {
+        floatCountSection.classList.add("collapsed");
+      }
+    });
+  </script>
 </body>
 
 </html>

@@ -15,11 +15,12 @@
 header {
     display: flex;
     flex-direction: column;
-    background: black;
+    background: transparent;
     color: rgb(255, 255, 255);
-    padding: 1rem 0;
+    padding: 5%;
     text-align: center;
-    border-bottom: black 1px dotted;
+    
+   
 }
 
 h1 {
@@ -27,6 +28,8 @@ h1 {
     right: 5%;
     top: 0;
     font-size: 2.5rem;
+    color: black;
+    padding-left: 1%;
 }
 
 h2 {
@@ -51,31 +54,28 @@ h3, h4 {
 }
 
 @media (max-width: 768px) {
-    .juice {
+    .juice,h1 {
         width: 15%; /* Smaller width for tablets */
+        font-family: 10%;
     }
+    .header {
+        width: 10%;
+        height: 20%;
+    }
+
 }
 
 @media (max-width: 480px) {
-    .juice {
+    .juice,h1 {
         width: 25%; /* Smaller width for mobile devices */
+    }
+    .header {
+        width: 10%;
+        height: 20%;
     }
 }
 
 
-/* Headings Container */
-.headings {
-    background-color: transparent;
-    padding-top: 5%;
-    height: 10%;
-    margin-top: 2%;
-}
-
-/* Layout Styles */
-.top {
-    margin-bottom: 5%;
-    width: 100%;
-}
 
 
 /* Input Field */
