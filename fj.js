@@ -189,21 +189,25 @@ document.addEventListener("DOMContentLoaded", () => {
   calculateTotals();
 });
 
-function toggleMenu() {
+document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.getElementById('navMenu');
-  const hamburgerIcon = document.querySelector('.hamburger-icon');
-  const toggleContainer = document.querySelector('.toggle-container');  // Get the toggle container
+  const toggleContainer = document.querySelector('.toggle-container');
+  const juiceImage = document.querySelector('.headings .juice');
 
-  // Toggle visibility of the nav menu
-  navMenu.classList.toggle('visible');
+  // Function to toggle the menu visibility
+  function toggleMenu() {
+    navMenu.classList.toggle('visible');
 
-  // Toggle the hamburger icon's open state
-  hamburgerIcon.classList.toggle('open');
-
-  // Hide the toggle switch when the menu is visible
-  if (navMenu.classList.contains('visible')) {
-    toggleContainer.style.display = 'none';  // Hide the toggle
-  } else {
-    toggleContainer.style.display = 'flex';  // Show the toggle
+    // Hide the toggle switch and image when the menu is visible
+    if (navMenu.classList.contains('visible')) {
+      toggleContainer.style.display = 'none';  // Hide the toggle
+      juiceImage.style.display = 'none';       // Hide the image
+    } else {
+      toggleContainer.style.display = 'flex';  // Show the toggle
+      juiceImage.style.display = 'block';      // Show the image
+    }
   }
-}
+
+  // Attach the toggleMenu function to the hamburger menu click event
+  document.querySelector('.hamburger-menu').addEventListener('click', toggleMenu);
+});
