@@ -213,3 +213,15 @@ function toggleMenu() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleShadow = document.getElementById("toggleShadow");
+    const container = document.querySelector(".container");
+
+    toggleShadow.addEventListener("change", function () {
+        if (this.checked) {
+            container.style.boxShadow = "0px 0px 15px yellow";
+        } else {
+            container.style.boxShadow = "0px 0px 10px black";
+        }
+    });
+});
