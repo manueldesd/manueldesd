@@ -1,84 +1,143 @@
-/* General Styles (These apply to all screen sizes) */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/*
+
+/* Reset margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Container with flexible layout */
+/* Make sure body and HTML take full height and prevent horizontal scrolling */
+body,
+html {
+  height: 100%;
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Container should fill the viewport height */
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  /* height: 100vh; /* 100% of the viewport height */
+  width: 100%;
+  overflow-y: auto;
+  /* Allow vertical scrolling if content overflows */
 }
 
-/* Flexbox layout for responsive design */
-.header,
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Content inside the container should be fully responsive */
+.content {
+  width: 100%;
+  /* Ensures the content takes up the full width */
+  height: auto;
+  /* Allows content to adjust height based on its content */
 }
 
-.header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+/* Styles for the landing page */
+.landing-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #f0f0f0;
 }
 
-.footer {
-    background-color: #222;
-    color: white;
-    padding: 10px;
+.landing-page .button-container {
+  display: flex;
+  gap: 20px;
 }
 
-/* Example of flexible images */
-img {
-    width: 100%;
-    height: auto;
+.landing-page button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Main content styling */
-.main-content {
-    display: flex;
-    flex-wrap: wrap;
+.landing-page button:hover {
+  background-color: #0056b3;
 }
 
-.main-content .section {
-    flex: 1 1 45%;
-    margin: 10px;
-    padding: 20px;
-    background-color: #f4f4f4;
-    border-radius: 8px;
+/* Styles for the pages (float, banking, etc.) */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  min-height: 100vh;
 }
 
-/* Media Queries for different screen sizes */
-
-/* Small screens (Phones, Tablets) */
-@media (max-width: 768px) {
-    .main-content .section {
-        flex: 1 1 100%;
-    }
-
-    .header,
-    .footer {
-        flex-direction: column;
-        text-align: center;
-    }
+.page h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
 }
 
-/* Larger screens (Laptops, Desktops) */
-@media (min-width: 769px) {
-    .main-content .section {
-        flex: 1 1 30%;
-    }
+.page .content-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Extra large screens (Large Desktops) */
-@media (min-width: 1200px) {
-    .container {
-        padding: 40px;
-    }
+.page .input-group {
+  margin-bottom: 20px;
 }
+
+.page input,
+.page button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.page input[type="number"] {
+  width: 100%;
+}
+
+.page button {
+  background-color: #28a745;
+  color: white;
+  border-radius: 5px;
+}
+
+.page button:hover {
+  background-color: #218838;
+}
+
+/* Styles for the Cash-Up Page */
+.cash-up-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cash-up-page .result {
+  font-size: 1.5em;
+  margin-top: 20px;
+  color: #333;
+}
+
+/* Styles for the summary page (fj3.htm) */
+.summary-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.summary-page .summary {
+  font-size: 1.5em;
+  color: #333;
+}
+
+*/

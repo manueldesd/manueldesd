@@ -4,41 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fruit Juice</title>
+  <title>Plutus</title>
   <link rel="stylesheet" href="fj.css">
-  <link rel="stylesheet" href="screen.css">
+  <link rel="stylesheet" href="sceen.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="icon" href="plutus.png" type="image/png">
   <link rel="manifest" href="manifest.json">
 </head>
+ <header>
+        <div class="top-row">
+            <nav class="links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+        <div class="bottom-row">
+            <div class="logo">
+                <img src="plutus.png" alt="Plutus Logo">
+            </div>
+            <div class="site-name">
+                <h1>Plutus</h1>
+            </div>
+        </div>
+    </header>
 <body>
-  
-  <header>
-    <nav>
-      <h1>Plutus</h1>
-      <img src="plutus.png" alt="juice" class="juice">
-      <br>
-    </nav>
-    <!-- Hamburger Menu -->
-  <div class="hamburger-menu" onclick="toggleMenu()">
-    <div class="hamburger-icon">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-    </div>
-  </div>
-
-  <!-- Navigation Menu -->
-  <div class="nav-menu" id="navMenu">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="cc.html">Carrot Cake</a></li>
-    </ul>
-  </div>
-</header>
 <br>
 <br> 
   <div class="container">
+     <label class="switch">
+                <input type="checkbox" id="toggleShadow">
+                <span class="slider"></span>
+            </label>
     <!-- Step 1: Float Count -->
     <div class="page active" id="float-count-page">
       <div class="toggle-container">

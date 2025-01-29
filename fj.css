@@ -1,137 +1,200 @@
-/* General Container */
-.container {
-    width: 65%;
-    height: 65%;
-    margin: 0 auto;
-    padding-top: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgb(0, 0, 0);
-    border-radius: 8px;
-    align-content: center;
-
+/* Prevent Horizontal Scrolling */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0; /* Ensure there's no default margin causing overflow */
+    padding: 0; /* Ensure there's no default padding causing overflow */
+    box-sizing: border-box; /* Include padding and border in width/height calculation */
 }
 
-/* Header Styles */
-header {
-    display: flex;
-    flex-direction: column;
-    background: transparent;
-    color: rgb(255, 255, 255);
-    padding: 5%;
-    text-align: center;
-    
-   
-}
-
-h1 {
-    position: absolute;
-    right: 5%;
-    top: 0;
-    font-size: 2.5rem;
-    color: black;
-    padding-left: 1%;
-}
-
-h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    font-stretch: 20%;
+/* Body Styles */
+body {
+    font-family: 'courier new';
     margin: 0;
+    padding: 0;
+    background-color: ;
+    align-content: center;
+    justify-content: center;
 }
 
-h3, h4 {
+/* Header */
+header {
+    background-color: white;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+
+.top-row {
+    margin-bottom: 10px;
+    background-color: gray;
+    width: 100%;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    height: 100px;
+    width: auto;
+}
+
+.site-name {
+    font-size: 1.2rem;
+    color: black;
+}
+
+/* Main Container */
+main {
+    margin: 10px;
     text-align: center;
 }
 
-/* Juice Image */
-.juice {
+.container {
+    padding: 10px;
+    background: white;
+    box-shadow: 0 0 10px black;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease;
+    width: 80%;
+    margin-left: 25px;
+    height: 70%;
+    margin-bottom: 50px; /* Add space between container and footer */
+}
+
+/* Switch Button */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
     position: absolute;
-    top: 2%;
-    width: 120px; /* Default width for larger screens */
-    height: auto;
-    border-radius: 10px;
-    left: 3%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-@media (max-width: 768px) {
-    .juice,h1 {
-        width: 15%; /* Smaller width for tablets */
-        font-family: 10%;
-    }
-    .header {
-        width: 10%;
-        height: 20%;
-    }
-
+.slider:before {
+    position: absolute;
+    content: "";
+    width: 16px;
+    height: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
 }
 
-@media (max-width: 480px) {
-    .juice,h1 {
-        width: 25%; /* Smaller width for mobile devices */
-    }
-    .header {
-        width: 10%;
-        height: 20%;
-    }
+input:checked + .slider {
+    background-color: #9e9909;
 }
 
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
 
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: relative; /* Adjusted from absolute to relative */
+    bottom: 0;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 0;
+    position: absolute;
+    bottom:0;
+}
 
-
-/* Input Field */
 input {
     font-size: medium;
-    width: 80px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    width: 60px;
+    border: none;
     border-bottom: dotted 1px black;
     text-align: center;
 }
 
-input:focus {
-    outline: none;
-}
-
-/* Buttons */
+/* BUTTON STYLES - CENTERED */
 button {
     display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
+    align-content: center;
     background: transparent;
-    border: none;
+    border: 1px dotted black;
     border-radius: 4px;
     cursor: pointer;
-    border: 1px dotted black;
-}
-
-button:hover {
-    background: white;
-}
-
-/* Tables */
-table {
-    margin: 0 auto; /* Centers the table horizontally */
-    width: 100%;
-    border-collapse: collapse; /* Prevents table cells from having spaces between them */
-    
-}
-
-th,
-td {
-    width: 33.3%;
-    padding: 5px;
     text-align: center;
-    border: 1px solid #ddd;
+   width: 60%;
+}
+
+/* Center button containers */
+.button-container, 
+.page button {
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    align-items: center;
+    width: 100%;
+}
+
+table {
+    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse; 
+    border: none;
+}
+
+th, td {
+    width: 33.3%;
+    text-align: center;
+    border: none;
+    height: 20px !important; /* Force a smaller row height */
+    padding: 2px !important; /* Reduce padding */
+    font-size: 12px !important; /* Make text smaller */
+    line-height: 1 !important; /* Tighter text spacing */
+    overflow: hidden; /* Prevent row expansion */
+    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 th {
     font-weight: bold;
     background-color: #f4f4f4; /* Light gray background for headers */
-    
 }
 
-/* Line Separators */
-.line {
-    border: none;
+/* Force Input Fields to Be Smaller Inside Tables */
+td input {
+    height: 10px !important; /* Reduce input field height */
+    padding: 0px !important; /* Remove padding */
+    font-size: 12px !important;
+    text-align: center;
+    background: transparent; /* Prevent unwanted expansion */
+    width: 80%;
+}
+
+h1 {
+    position: absolute;
+    right: 10%;
+    top: 5%;
 }
