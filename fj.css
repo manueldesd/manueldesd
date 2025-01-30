@@ -1,20 +1,11 @@
-/* Prevent Horizontal Scrolling */
-html, body {
+
+body {
+  font-family: 'courier new';
     overflow-x: hidden;
     width: 100%;
     margin: 0; /* Ensure there's no default margin causing overflow */
     padding: 0; /* Ensure there's no default padding causing overflow */
     box-sizing: border-box; /* Include padding and border in width/height calculation */
-}
-
-/* Body Styles */
-body {
-    font-family: 'courier new';
-    margin: 0;
-    padding: 0;
-    background-color: ;
-    align-content: center;
-    justify-content: center;
 }
 
 /* Header */
@@ -116,19 +107,7 @@ input:checked + .slider:before {
     transform: translateX(20px);
 }
 
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    position: relative; /* Adjusted from absolute to relative */
-    bottom: 0;
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px 0;
-    position: absolute;
-    bottom:0;
-}
+
 
 input {
     font-size: medium;
@@ -136,28 +115,19 @@ input {
     border: none;
     border-bottom: dotted 1px black;
     text-align: center;
+    height: 100% ;
 }
 
 /* BUTTON STYLES - CENTERED */
 button {
-    display: block;
-    align-content: center;
     background: transparent;
     border: 1px dotted black;
     border-radius: 4px;
     cursor: pointer;
     text-align: center;
-   width: 60%;
+    width: 50%;
 }
 
-/* Center button containers */
-.button-container, 
-.page button {
-    display: flex;
-    justify-content: center; /* Centers buttons horizontally */
-    align-items: center;
-    width: 100%;
-}
 
 table {
     margin: 0 auto;
@@ -170,10 +140,10 @@ th, td {
     width: 33.3%;
     text-align: center;
     border: none;
-    height: 20px !important; /* Force a smaller row height */
-    padding: 2px !important; /* Reduce padding */
-    font-size: 12px !important; /* Make text smaller */
-    line-height: 1 !important; /* Tighter text spacing */
+    height: 20px;
+    padding: 2px !important; 
+    font-size: 12px !important; 
+  
     overflow: hidden; /* Prevent row expansion */
     white-space: nowrap; /* Prevent text from wrapping */
 }
@@ -185,11 +155,10 @@ th {
 
 /* Force Input Fields to Be Smaller Inside Tables */
 td input {
-    height: 10px !important; /* Reduce input field height */
-    padding: 0px !important; /* Remove padding */
-    font-size: 12px !important;
+    height: 15px;
+    font-size: 12px;
     text-align: center;
-    background: transparent; /* Prevent unwanted expansion */
+    background: transparent;
     width: 80%;
 }
 
@@ -198,3 +167,4 @@ h1 {
     right: 10%;
     top: 5%;
 }
+
