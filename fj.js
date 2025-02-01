@@ -250,3 +250,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const floatToggle = document.getElementById("float-toggle");
+  const floatCountSection = document.getElementById("float-count-section");
+
+  // Function to handle float section expand/collapse
+  floatToggle.addEventListener("change", () => {
+    if (floatToggle.checked) {
+      floatCountSection.classList.remove("collapsed");
+      floatCountSection.classList.add("expanded");
+    } else {
+      floatCountSection.classList.remove("expanded");
+      floatCountSection.classList.add("collapsed");
+    }
+  });
+
+  // Initial state based on the checkbox
+  if (floatToggle.checked) {
+    floatCountSection.classList.add("expanded");
+  } else {
+    floatCountSection.classList.add("collapsed");
+  }
+});
