@@ -3,20 +3,21 @@ body {
   font-family: 'courier new';
     overflow-x: hidden;
     width: 100%;
-    margin: 0; /* Ensure there's no default margin causing overflow */
-    padding: 0; /* Ensure there's no default padding causing overflow */
-    box-sizing: border-box; /* Include padding and border in width/height calculation */
+   /* margin: 0;
+    padding: 0;
+    box-sizing: border-box;*/
 }
 
-/* Header */
+/* Header 
 header {
     background-color: white;
     color: white;
     text-align: center;
     width: 100%;
-}
+}*/
 
 .top-row {
+    height: 30px;
     margin-bottom: 10px;
     background-color: gray;
     width: 100%;
@@ -25,7 +26,7 @@ header {
 .links a {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 20px;
 }
 
 .bottom-row {
@@ -62,51 +63,6 @@ main {
     height: 70%;
     margin-bottom: 50px; /* Add space between container and footer */
 }
-
-/* Switch Button */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-}
-
-.switch input {
-    display: none;
-}
-
-.slider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #333;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    width: 16px;
-    height: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.3s;
-}
-
-input:checked + .slider {
-    background-color: #9e9909;
-}
-
-input:checked + .slider:before {
-    transform: translateX(20px);
-}
-
 
 
 input {

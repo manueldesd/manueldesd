@@ -213,10 +213,35 @@ function toggleMenu() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const toggleShadow = document.getElementById("toggleShadow");
     const container = document.querySelector(".container");
 
+    let wakeLock = null;
+
+    // Function to request wake lock
+    async function requestWakeLock() {
+        try {
+            wakeLock = await navigator.wakeLock.request("screen");
+            console.log("Screen wake lock is active");
+
+            // Handle wake lock release
+            wakeLock.addEventListener("release", () => {
+                console.log("Wake lock was released");
+            });
+        } catch (err) {
+            console.error("Wake lock request failed:", err);
+        }
+    }
+
+    // Request wake lock when page loads
+    if ("wakeLock" in navigator) {
+        requestWakeLock();
+    } else {
+        console.warn("Wake Lock API is not supported in this browser.");
+    }
+
+    // Shadow effect toggle
     toggleShadow.addEventListener("change", function () {
         if (this.checked) {
             container.style.boxShadow = "0px 0px 15px yellow";
