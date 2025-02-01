@@ -234,6 +234,7 @@ body {
   /*             Button Styling           */
   /* ====================================== */
   button {
+    width: 100%;
     display: inline-block;
     justify-content: center;
     background-color: transparent;

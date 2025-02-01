@@ -119,10 +119,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // floatToggle.addEventListener("change", () => {
+  //   isFloatEnabled = floatToggle.checked;
+  //   const floatInputs = floatRows.querySelectorAll(".quantity");
+
+  //   if (!isFloatEnabled) {
+  //     floatInputs.forEach((input) => {
+  //       input.disabled = true;
+  //       input.value = ""; // Clear float values when disabled
+  //     });
+  //     totalFloatDisplay.textContent = "1000.00"; // Default value for float
+  //     localStorage.setItem("float", "1000"); // Set default value for float when disabled
+  //   } else {
+  //     floatInputs.forEach((input) => {
+  //       input.disabled = false;
+  //       input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || ""; // Restore values from localStorage
+  //     });
+  //     calculateTotals();
+  //   }
+
+  //   updateBankingBreakdown(); // Update banking amount when the float is toggled
+  // });
   floatToggle.addEventListener("change", () => {
     isFloatEnabled = floatToggle.checked;
     const floatInputs = floatRows.querySelectorAll(".quantity");
 
+    // Trigger recalculation when toggled
+    calculateTotals();
+    updateBankingBreakdown();
+
+    // Handle float input enabled/disabled based on the toggle switch
     if (!isFloatEnabled) {
       floatInputs.forEach((input) => {
         input.disabled = true;
@@ -135,10 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input.disabled = false;
         input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || ""; // Restore values from localStorage
       });
-      calculateTotals();
     }
-
-    updateBankingBreakdown(); // Update banking amount when the float is toggled
   });
 
   finalizeButton.addEventListener("click", () => {
