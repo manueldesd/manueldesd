@@ -2,7 +2,7 @@
 /*             Global Reset             */
 /* ====================================== */
 * html, body {
-    width: 100%;
+    max-width:100%;
     overflow-x: hidden;
 }
 img, table {
@@ -15,7 +15,6 @@ img, table {
   /* ====================================== */
   body {
     font-family: 'Courier New', monospace;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensures the page fills the viewport height */
@@ -302,43 +301,4 @@ img, table {
     border-right: none;
   }
   
-  /* ====================================== */
-  /*             Responsive Styles        */
-  /* ====================================== */
-  @media (max-width: 768px) {
-    .container {
-      width: 95%;
-      padding: 15px;
-    }
-    .top-row .links a {
-      margin: 0 10px;
-      font-size: 14px;
-    }
-    .logo img {
-      height: 80px;
-    }
-    .site-name h1 {
-      font-size: 1.5rem;
-    }
-    button {
-      padding: 8px 15px;
-      font-size: 14px;
-    }
-    table th, table td {
-      padding: 8px;
-      font-size: 14px;
-    }
-  }
-  
-  /* Note: The following media query no longer changes the flex direction for .bottom-row,
-     ensuring that the logo and name remain side by side on all screens. */
-  @media (max-width: 480px) {
-    .screen {
-      left: 0;
-      font-size: 14px;
-    }
-    .toggle-container label {
-      font-size: 14px;
-    }
-  }
   
