@@ -23,14 +23,14 @@ body {
     width: 100vw; /* Ensures it spans the full viewport width */
     max-width: 100%; /* Prevents it from going beyond the screen */
     text-align: center;
-    padding: 10px 0; /* Adds spacing without affecting width */
     box-sizing: border-box; /* Ensures padding doesn't increase width */
     overflow: hidden; /* Ensures no content spills out */
+    color: #000;
 }
 
   
   .top-row {
-    background-color: gray;
+    background-color: rgb(255, 255, 255);
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -90,7 +90,7 @@ body {
     width: 100vw; /* Ensures it spans the full viewport width */
     max-width: 100%; /* Prevents it from going beyond the screen */
     text-align: center;
-    padding: 10px 0; /* Adds spacing without affecting width */
+
     box-sizing: border-box; /* Ensures padding doesn't increase width */
     overflow: hidden; /* Ensures no content spills out */
   }
@@ -295,7 +295,7 @@ body {
   }
   
   input {
-    width: 33.3%;
+    width: 20%;
     background-color: transparent;
     border-bottom: #000 1px solid;
     border-top: none;
