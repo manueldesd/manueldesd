@@ -54,9 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
         input.parentElement.nextElementSibling.textContent = `R${denominationTotal.toFixed(2)}`;
 
         if (isFloatEnabled && type === "float") {
-          localStorage.setItem(`float-${denomination}`, input.value);
+          localStorage.setItem(`float-${denomination}`, input.value); // Save updated float value
         } else if (type === "cash") {
-          localStorage.setItem(`cash-${denomination}`, input.value);
+          localStorage.setItem(`cash-${denomination}`, input.value); // Save cash value
         }
       });
 
@@ -129,13 +129,16 @@ document.addEventListener("DOMContentLoaded", () => {
         input.value = ""; // Clear float values when disabled
       });
       totalFloatDisplay.textContent = "1000.00"; // Default value for float
+      localStorage.setItem("float", "1000"); // Set default value for float when disabled
     } else {
       floatInputs.forEach((input) => {
-        input.disabled = false; // Ensure inputs are re-enabled
-        input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || ""; // Restore values
+        input.disabled = false;
+        input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || ""; // Restore values from localStorage
       });
       calculateTotals();
     }
+
+    updateBankingBreakdown(); // Update banking amount when the float is toggled
   });
 
   finalizeButton.addEventListener("click", () => {
@@ -153,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".quantity").forEach((input) => {
     input.addEventListener("input", () => {
       calculateTotals();
-      updateBankingBreakdown();
+      updateBankingBreakdown(); // Update banking amount on any input change
     });
   });
 
@@ -189,73 +192,71 @@ document.addEventListener("DOMContentLoaded", () => {
   calculateTotals();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const resultFloatDisplay = document.getElementById("result-float");
+
+  // Retrieve the float value from localStorage
+  const totalFloat = localStorage.getItem("float");
+  if (totalFloat) {
+    resultFloatDisplay.textContent = `R${parseFloat(totalFloat).toFixed(2)}`;
+  } else {
+    resultFloatDisplay.textContent = "R1000.00"; // Default value if no float is found
+  }
+});
+
 function toggleMenu() {
   const menu = document.getElementById('navMenu');
   const hamburgerIcon = document.querySelector('.hamburger-icon');
   const h1 = document.querySelector('.hi');
 
-  // Toggle visibility of the navigation menu
   menu.classList.toggle('visible');
   hamburgerIcon.classList.toggle('open');
 
-  // Toggle the "behind" class on the h1 element
   if (menu.classList.contains('visible')) {
-      h1.classList.add('behind');
+    h1.classList.add('behind');
   } else {
-      h1.classList.remove('behind');
-  }
-
-  // Toggle the "behind" class on the h1 element
-  if (menu.classList.contains('visible')) {
-      scroll_down.classList.add('behind');
-  } else {
-      scroll_down.classList.remove('behind');
+    h1.classList.remove('behind');
   }
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-    const toggleShadow = document.getElementById("toggleShadow");
-    const container = document.querySelector(".container");
+  const toggleShadow = document.getElementById("toggleShadow");
+  const container = document.querySelector(".container");
 
-    let wakeLock = null;
+  let wakeLock = null;
 
-    // Function to request wake lock
-    async function requestWakeLock() {
-        try {
-            wakeLock = await navigator.wakeLock.request("screen");
-            console.log("Screen wake lock is active");
+  async function requestWakeLock() {
+    try {
+      wakeLock = await navigator.wakeLock.request("screen");
+      console.log("Screen wake lock is active");
 
-            // Handle wake lock release
-            wakeLock.addEventListener("release", () => {
-                console.log("Wake lock was released");
-            });
-        } catch (err) {
-            console.error("Wake lock request failed:", err);
-        }
+      wakeLock.addEventListener("release", () => {
+        console.log("Wake lock was released");
+      });
+    } catch (err) {
+      console.error("Wake lock request failed:", err);
     }
+  }
 
-    // Request wake lock when page loads
-    if ("wakeLock" in navigator) {
-        requestWakeLock();
+  if ("wakeLock" in navigator) {
+    requestWakeLock();
+  } else {
+    console.warn("Wake Lock API is not supported in this browser.");
+  }
+
+  toggleShadow.addEventListener("change", function () {
+    if (this.checked) {
+      container.style.boxShadow = "0px 0px 15px yellow";
     } else {
-        console.warn("Wake Lock API is not supported in this browser.");
+      container.style.boxShadow = "0px 0px 10px black";
     }
-
-    // Shadow effect toggle
-    toggleShadow.addEventListener("change", function () {
-        if (this.checked) {
-            container.style.boxShadow = "0px 0px 15px yellow";
-        } else {
-            container.style.boxShadow = "0px 0px 10px black";
-        }
-    });
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   const floatToggle = document.getElementById("float-toggle");
   const floatCountSection = document.getElementById("float-count-section");
 
-  // Function to handle float section expand/collapse
   floatToggle.addEventListener("change", () => {
     if (floatToggle.checked) {
       floatCountSection.classList.remove("collapsed");
@@ -266,7 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initial state based on the checkbox
   if (floatToggle.checked) {
     floatCountSection.classList.add("expanded");
   } else {
