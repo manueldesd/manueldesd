@@ -242,7 +242,7 @@ function toggleMenu() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", async function () {
+document.addEventListener("DOMContentLoaded", async function () { 
   const toggleShadow = document.getElementById("toggleShadow");
   const container = document.querySelector(".container");
 
@@ -258,6 +258,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
     } catch (err) {
       console.error("Wake lock request failed:", err);
+      container.style.boxShadow = "0px 0px 15px red"; // Apply red shadow on failure
     }
   }
 
@@ -265,6 +266,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     requestWakeLock();
   } else {
     console.warn("Wake Lock API is not supported in this browser.");
+    container.style.boxShadow = "0px 0px 15px none"; // Apply red shadow if not supported
   }
 
   toggleShadow.addEventListener("change", function () {
@@ -295,4 +297,12 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     floatCountSection.classList.add("collapsed");
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("input").forEach(input => {
+      input.addEventListener("focus", function () {
+          this.select();
+      });
+  });
 });

@@ -51,13 +51,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
   }
   
-  /* .inner-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #0400ff;
-  } */
   
   /* ---------------------- */
   /*         Footer         */
@@ -67,7 +60,7 @@ body {
     width: 100vw; /* Ensures it spans the full viewport width */
     max-width: 100%; /* Prevents it from going beyond the screen */
     text-align: center;
-
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
     box-sizing: border-box; /* Ensures padding doesn't increase width */
     overflow: hidden; /* Ensures no content spills out */
   }
@@ -211,7 +204,7 @@ body {
   /*             Button Styling           */
   /* ====================================== */
   button {
-    width: 100%;
+    width: 50%;
     display: inline-block;
     justify-content: center;
     background-color: transparent;
@@ -266,7 +259,7 @@ body {
   }
   
   th, td {
-    
+    width: 33.3%;
     background-color: transparent;
     padding: 10px;
     text-align: center;
@@ -283,6 +276,25 @@ body {
     border-top: none;
     border-left: none;
     border-right: none;
+    text-align: center;
   }
   
-  
+  /* ====================================== */
+  /*          page 3 styling              */
+  /* ====================================== */
+
+  h4, .bank-label {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Ensures vertical centering */
+    border: none;
+    width: 100%;
+    padding: 10px;
+}
+
+.center {
+    display: flex; /* Changed from block to flex for centering */
+    flex-direction: column; /* Ensures content stacks vertically */
+    align-items: center; /* Centers child elements horizontally */
+    position: relative;
+}

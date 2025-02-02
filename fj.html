@@ -49,14 +49,15 @@
             </thead>
             <tbody id="float-rows"></tbody>
           </table>
-          <p>Total Float-In: R<span id="total-float">0.00</span></p>
+          
         </section>
-        <button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button>
+        <div class="center"><p>Total Float-In: R<span id="total-float">0.00</span></p><br><button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button></div>
+        
       </div>
 
       <!-- Step 2: Cash Taken -->
       <div class="page" id="cash-taken-page">
-        <section id="cash-taken-section">
+        <section id="cash-taken-section" class="center">
           <button class="back-page-button" data-target="float-count-page">Back: Float Count</button>
           <table>
             <thead>
@@ -75,11 +76,11 @@
 
       <!-- Step 3: Banking -->
       <div class="page" id="banking-page">
-        <section id="banking-section">
+        <section id="banking-section" class="center">
           <button class="back-page-button" data-target="cash-taken-page">Back: Cash Taken</button>
           <h4>Step 3: Banking</h4>
-          <label for="bank-amount">Enter Amount to Bank:</label>
-          <input type="number" id="bank-amount" placeholder="0.00">
+          <label for="bank-amount" class="bank-label">Amount to Bank:</label>
+          <input type="number" id="bank-amount" class="bank-label" placeholder="0.00">
           <button id="calculate-bank">Calculate Banking Breakdown</button>
           <h3>Banking Breakdown</h3>
           <table>
@@ -97,12 +98,16 @@
 
       <!-- Results Page -->
       <div class="page" id="results-page">
-        <section id="results-section">
-          <button class="back-page-button" data-target="banking-page">Back: Cash Taken</button>
+        <section id="results-section" class="center">
+         <button class="back-page-button" data-target="banking-page">Back: Cash Taken</button>
           <h2>Final Results</h2>
-          <p>Total Float-In: R<span id="result-float">0.00</span></p>
+          <br>
           <p>Total Cash Taken: R<span id="result-cash-taken">0.00</span></p>
+          <br>
+          <p>Total Float-In: R<span id="result-float">0.00</span></p>
+          <br>
           <p>Amount Banked: R<span id="result-banked">0.00</span></p>
+          <br>
           <p>Remaining Cash: R<span id="result-remaining">0.00</span></p>
           <button class="next-page-button" data-target="float-count-page">Start Over</button>
           <button id="clear-all-button">Clear All</button>
