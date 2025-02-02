@@ -18,50 +18,27 @@ body {
   /* ---------------------- */
   /*        Header          */
   /* ---------------------- */
-  header {
-    background-color: white;
-    width: 100vw; /* Ensures it spans the full viewport width */
-    max-width: 100%; /* Prevents it from going beyond the screen */
-    text-align: center;
-    box-sizing: border-box; /* Ensures padding doesn't increase width */
-    overflow: hidden; /* Ensures no content spills out */
-    color: #000;
-}
-
-  
-  .top-row {
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
+  .header {
     display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .top-row .links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-  }
-  
-  .bottom-row {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-  }
-  
-  /* Ensure the logo and name remain side by side even on small screens */
-  .logo img {
-    height: 100px;
-    width: auto;
-    max-width: 100%;
-  }
-  
-  .site-name h1 {
-    font-size: 2rem;
-    color: black;
-  }
-  
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+}
+.logo {
+    height: 50px;
+    margin-right: 20px;
+}
+.nav {
+    flex-grow: 1;
+}
+.nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+ 
   /* ---------------------- */
   /*      Main Content      */
   /* ---------------------- */
@@ -70,17 +47,17 @@ body {
     width: 80%;
     margin: 20px auto; /* Centers the container horizontally */
     padding: 20px;
-    background: #f9f9f9;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.589);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
   }
   
-  .inner-container {
+  /* .inner-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    background: #0400ff;
+  } */
   
   /* ---------------------- */
   /*         Footer         */
@@ -278,14 +255,18 @@ body {
   /* ====================================== */
   /*          Table Styling               */
   /* ====================================== */
+
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
   }
   
   th, td {
-    width: 33.33%;
+    
     background-color: transparent;
     padding: 10px;
     text-align: center;

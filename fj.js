@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   toggleShadow.addEventListener("change", function () {
     if (this.checked) {
-      container.style.boxShadow = "0px 0px 15px yellow";
+      container.style.boxShadow = "0px 0px 15px #FDAD01";
     } else {
       container.style.boxShadow = "0px 0px 10px black";
     }
