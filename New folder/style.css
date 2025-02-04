@@ -112,3 +112,19 @@ footer {
     margin-top: auto;
 }
 
+/* Default PC View */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 5px;
+}
