@@ -51,6 +51,7 @@
           </table>
           
         </section>
+        
         <div class="center"><p>Total Float-In: R<span id="total-float">0.00</span></p><br><button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button></div>
         
       </div>
@@ -80,7 +81,8 @@
           <button class="back-page-button" data-target="cash-taken-page">Back: Cash Taken</button>
           <h4>Step 3: Banking</h4>
           <label for="bank-amount" class="bank-label">Amount to Bank:</label>
-          <input type="number" id="bank-amount" class="bank-label" placeholder="0.00">
+          <span id="bank-amount" class="bank-label">R0.00</span>
+
           <button id="calculate-bank">Calculate Banking Breakdown</button>
           <h3>Banking Breakdown</h3>
           <table>

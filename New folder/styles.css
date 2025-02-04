@@ -1,0 +1,117 @@
+/* ====================================== */
+/*             Global Reset             */
+/* ====================================== */
+body {
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensures the page fills the viewport height */
+    margin: 0;
+    /* Prevents unwanted spacing */
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    /* Prevents horizontal scrolling */
+    box-sizing: border-box;
+    /* Ensures consistent element sizing */
+}
+
+
+
+/* ---------------------- */
+/*        Header          */
+/* ---------------------- */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+}
+
+.logo {
+    height: 50px;
+    margin-right: 20px;
+}
+
+.nav {
+    flex-grow: 1;
+}
+
+.nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* ---------------------- */
+/*      Main Content      */
+/* ---------------------- */
+.container {
+    flex: 1;
+    /* This div grows to fill the available space */
+    width: 80%;
+    margin: 20px auto;
+    /* Centers the container horizontally */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+}
+
+
+/* ---------------------- */
+/*         Footer         */
+/* ---------------------- */
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: white;
+    width: 100vw;
+    /* Ensures it spans the full viewport width */
+    max-width: 100%;
+    /* Prevents it from going beyond the screen */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+    box-sizing: border-box;
+    /* Ensures padding doesn't increase width */
+    overflow: hidden;
+    /* Ensures no content spills out */
+}
+
+
+/* ====================================== */
+/*             Button Styling           */
+/* ====================================== */
+button {
+    width: 50%;
+    display: inline-block;
+    justify-content: center;
+    background-color: transparent;
+    border: dotted 1px black;
+    color: black;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+button:hover {
+    background-color: #03f4fc;
+    color: white;
+}
+
+
+
+.center {
+    display: flex;
+    /* Changed from block to flex for centering */
+    flex-direction: column;
+    /* Ensures content stacks vertically */
+    align-items: center;
+    /* Centers child elements horizontally */
+    position: relative;
+}

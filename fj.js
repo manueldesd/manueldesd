@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const totalFloatDisplay = document.getElementById("total-float");
   const totalCashTakenDisplay = document.getElementById("total-cash-taken");
-  const bankAmountInput = document.getElementById("bank-amount");
+  const bankAmountDisplay = document.getElementById("bank-amount"); // Now a display element
 
   const resultFloatDisplay = document.getElementById("result-float");
   const resultCashTakenDisplay = document.getElementById("result-cash-taken");
@@ -19,13 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const floatToggle = document.getElementById("float-toggle");
   let isFloatEnabled = true;
 
+  // Create rows for denominations
   const createRows = (denominations, parent, type) => {
     denominations.forEach((denomination) => {
       const label = denomination < 1 ? `${denomination * 100}c` : `R${denomination}`;
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${label}</td>
-        <td><input type="number" data-denomination="${denomination}" class="quantity" value="" placeholder=""></td>
+        <td>
+          <input type="number" data-denomination="${denomination}" class="quantity" value="" placeholder="">
+        </td>
         <td class="denomination-total">R0.00</td>
       `;
       parent.appendChild(row);
@@ -40,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
   createRows(denominations, floatRows, "float");
   createRows(denominations, cashTakenRows, "cash");
 
+  // Calculate totals for float and cash inputs
   const calculateTotals = () => {
     const calculateTotal = (parent, type) => {
       const inputs = parent.querySelectorAll(".quantity");
@@ -49,17 +53,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const denomination = parseFloat(input.dataset.denomination);
         const quantity = parseInt(input.value, 10) || 0;
         const denominationTotal = denomination * quantity;
-
         total += denominationTotal;
+
+        // Update the row's denomination total
         input.parentElement.nextElementSibling.textContent = `R${denominationTotal.toFixed(2)}`;
 
+        // Save the value in localStorage
         if (isFloatEnabled && type === "float") {
-          localStorage.setItem(`float-${denomination}`, input.value); // Save updated float value
+          localStorage.setItem(`float-${denomination}`, input.value);
         } else if (type === "cash") {
-          localStorage.setItem(`cash-${denomination}`, input.value); // Save cash value
+          localStorage.setItem(`cash-${denomination}`, input.value);
         }
       });
-
       return total;
     };
 
@@ -69,101 +74,103 @@ document.addEventListener("DOMContentLoaded", () => {
 
     totalFloatDisplay.textContent = totalFloat.toFixed(2);
     totalCashTakenDisplay.textContent = totalCashTaken.toFixed(2);
-    bankAmountInput.value = bankAmount.toFixed(2);
+    // Update the bank amount display element with an "R" prefix.
+    bankAmountDisplay.textContent = `R${bankAmount.toFixed(2)}`;
 
     return { totalFloat, totalCashTaken, bankAmount };
   };
 
+  // Helper: Convert a monetary value to cents (avoids floating-point issues)
+  const toCents = (amount) => Math.round(amount * 100);
+
+  // Recursive function to find a coin combination that sums exactly to target (in cents)
+  const findCombination = (denoms, index, target, available, combination) => {
+    if (target === 0) return combination;
+    if (index >= denoms.length) return null;
+
+    const d = denoms[index];
+    const coinValue = toCents(d);
+    const maxAvailable = available[d] || 0;
+    const maxCount = Math.min(maxAvailable, Math.floor(target / coinValue));
+
+    for (let count = maxCount; count >= 0; count--) {
+      const newTarget = target - count * coinValue;
+      combination[d] = count;
+      const result = findCombination(denoms, index + 1, newTarget, available, combination);
+      if (result !== null) {
+        return result;
+      }
+    }
+    delete combination[d];
+    return null;
+  };
+
+  // Updated banking breakdown using the coin change approach
   const updateBankingBreakdown = () => {
     const { bankAmount } = calculateTotals();
-    let remainingAmount = bankAmount;
     bankingRows.innerHTML = "";
 
+    // Build an object of available coins from cashTakenRows
     const cashAvailable = {};
     const cashTakenInputs = cashTakenRows.querySelectorAll(".quantity");
-
     cashTakenInputs.forEach((input) => {
       const denomination = parseFloat(input.dataset.denomination);
       const quantity = parseInt(input.value, 10) || 0;
       cashAvailable[denomination] = quantity;
     });
 
-    const sortedDenominations = [...denominations].sort((a, b) => b - a);
+    const targetCents = toCents(bankAmount);
+    const sortedDenoms = [...denominations].sort((a, b) => b - a);
+    const combination = findCombination(sortedDenoms, 0, targetCents, cashAvailable, {});
 
-    sortedDenominations.forEach((denomination) => {
-      const availableQty = cashAvailable[denomination] || 0;
-      const neededQty = Math.floor(remainingAmount / denomination);
-      const qtyToTake = Math.min(neededQty, availableQty);
-
-      if (qtyToTake > 0) {
-        remainingAmount -= qtyToTake * denomination;
-        remainingAmount = Math.max(remainingAmount, 0).toFixed(2);
-
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${denomination < 1 ? `${denomination * 100}c` : `R${denomination}`}</td>
-          <td>${qtyToTake}</td>
-        `;
-        bankingRows.appendChild(row);
-      }
-    });
-
-    if (remainingAmount > 0.001) {
+    if (combination) {
+      sortedDenoms.forEach((denom) => {
+        const count = combination[denom] || 0;
+        if (count > 0) {
+          const label = denom < 1 ? `${denom * 100}c` : `R${denom}`;
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${label}</td>
+            <td>${count}</td>
+          `;
+          bankingRows.appendChild(row);
+        }
+      });
+    } else {
       const errorRow = document.createElement("tr");
       errorRow.innerHTML = `
         <td colspan="2" style="color: red; font-weight: bold;">
-          Warning: Unable to break down R${remainingAmount}.
+          Warning: Unable to break down R${bankAmount.toFixed(2)}.
         </td>
       `;
       bankingRows.appendChild(errorRow);
     }
   };
 
-  // floatToggle.addEventListener("change", () => {
-  //   isFloatEnabled = floatToggle.checked;
-  //   const floatInputs = floatRows.querySelectorAll(".quantity");
-
-  //   if (!isFloatEnabled) {
-  //     floatInputs.forEach((input) => {
-  //       input.disabled = true;
-  //       input.value = ""; // Clear float values when disabled
-  //     });
-  //     totalFloatDisplay.textContent = "1000.00"; // Default value for float
-  //     localStorage.setItem("float", "1000"); // Set default value for float when disabled
-  //   } else {
-  //     floatInputs.forEach((input) => {
-  //       input.disabled = false;
-  //       input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || ""; // Restore values from localStorage
-  //     });
-  //     calculateTotals();
-  //   }
-
-  //   updateBankingBreakdown(); // Update banking amount when the float is toggled
-  // });
+  // Toggle float inputs on/off based on the toggle switch
   floatToggle.addEventListener("change", () => {
     isFloatEnabled = floatToggle.checked;
     const floatInputs = floatRows.querySelectorAll(".quantity");
 
-    // Trigger recalculation when toggled
     calculateTotals();
     updateBankingBreakdown();
 
-    // Handle float input enabled/disabled based on the toggle switch
     if (!isFloatEnabled) {
       floatInputs.forEach((input) => {
         input.disabled = true;
-        input.value = ""; // Clear float values when disabled
+        input.value = "";
       });
-      totalFloatDisplay.textContent = "1000.00"; // Default value for float
-      localStorage.setItem("float", "1000"); // Set default value for float when disabled
+      totalFloatDisplay.textContent = "1000.00";
+      localStorage.setItem("float", "1000");
     } else {
       floatInputs.forEach((input) => {
         input.disabled = false;
-        input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || ""; // Restore values from localStorage
+        input.value = localStorage.getItem(`float-${input.dataset.denomination}`) || "";
       });
     }
   });
 
+  // Finalize button: show results on the results page
   finalizeButton.addEventListener("click", () => {
     const { totalFloat, totalCashTaken, bankAmount } = calculateTotals();
     const remainingCash = totalCashTaken - bankAmount;
@@ -176,13 +183,15 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage("results-page");
   });
 
+  // Update calculations and breakdown when any quantity input changes
   document.querySelectorAll(".quantity").forEach((input) => {
     input.addEventListener("input", () => {
       calculateTotals();
-      updateBankingBreakdown(); // Update banking amount on any input change
+      updateBankingBreakdown();
     });
   });
 
+  // Function to switch between pages (assumes pages have class "page" and active page has class "active")
   const showPage = (pageId) => {
     document.querySelectorAll(".page").forEach((page) => {
       page.classList.remove("active");
@@ -193,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Next-page button event listeners
   document.querySelectorAll(".next-page-button").forEach((button) => {
     button.addEventListener("click", (e) => {
       const targetPage = e.target.getAttribute("data-target");
@@ -200,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Back-page button event listeners
   document.querySelectorAll(".back-page-button").forEach((button) => {
     button.addEventListener("click", (e) => {
       const targetPage = e.target.getAttribute("data-target");
@@ -207,23 +218,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Clear all button: clear localStorage and reload page
   clearButton.addEventListener("click", () => {
     localStorage.clear();
     location.reload();
   });
 
+  // Initial calculation on page load
   calculateTotals();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   const resultFloatDisplay = document.getElementById("result-float");
-
-  // Retrieve the float value from localStorage
   const totalFloat = localStorage.getItem("float");
   if (totalFloat) {
     resultFloatDisplay.textContent = `R${parseFloat(totalFloat).toFixed(2)}`;
   } else {
-    resultFloatDisplay.textContent = "R1000.00"; // Default value if no float is found
+    resultFloatDisplay.textContent = "R1000.00";
   }
 });
 
@@ -242,7 +253,7 @@ function toggleMenu() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", async function () { 
+document.addEventListener("DOMContentLoaded", async function () {
   const toggleShadow = document.getElementById("toggleShadow");
   const container = document.querySelector(".container");
 
@@ -258,7 +269,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
     } catch (err) {
       console.error("Wake lock request failed:", err);
-      container.style.boxShadow = "0px 0px 15px red"; // Apply red shadow on failure
+      container.style.boxShadow = "0px 0px 15px red";
     }
   }
 
@@ -266,7 +277,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     requestWakeLock();
   } else {
     console.warn("Wake Lock API is not supported in this browser.");
-    container.style.boxShadow = "0px 0px 15px none"; // Apply red shadow if not supported
+    container.style.boxShadow = "0px 0px 15px none";
   }
 
   toggleShadow.addEventListener("change", function () {
@@ -300,9 +311,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll("input").forEach(input => {
-      input.addEventListener("focus", function () {
-          this.select();
-      });
+  document.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("focus", function () {
+      this.select();
+    });
   });
 });
+
