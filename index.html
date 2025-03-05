@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plutus</title>
+  <link rel="stylesheet" href="fj.css">
+  <link rel="icon" href="plutus.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<header class="header">
+  <img src="plutus.png" alt="Logo" class="logo">
+  <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+</header>
+
+<body>
+  <div class="container">
+    <label class="switch">
+      <input type="checkbox" id="toggleShadow">
+      <span class="slider"></span>
+    </label>
+    <label class="screen">Screen Always On</label>
+      <div class="toggle-container">
+        <input type="checkbox" id="float-toggle" checked>
+        <label for="float-toggle">Enable Float-In</label>
+      </div>
+    
+    <div class="inner-container">
+      <!-- Step 1: Float Count -->
+      <div class="page active" id="float-count-page">
+        <section id="float-count-section">
+          <table>
+            <thead>
+              <tr>
+                <th>Denom</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="float-rows"></tbody>
+          </table>
+          
+        </section>
+        
+        <div class="center"><p>Total Float-In: R<span id="total-float">0.00</span></p><br><button class="next-page-button" data-target="cash-taken-page">Next: Cash Taken</button></div>
+        
+      </div>
+
+      <!-- Step 2: Cash Taken -->
+      <div class="page" id="cash-taken-page">
+        <section id="cash-taken-section" class="center">
+          <button class="back-page-button" data-target="float-count-page">Back: Float Count</button>
+          <table>
+            <thead>
+              <tr>
+                <th>Denom</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="cash-taken-rows"></tbody>
+          </table>
+          <p>Total Cash Taken: R<span id="total-cash-taken">0.00</span></p>
+          <button class="next-page-button" data-target="banking-page">Next: Banking</button>
+        </section>
+      </div>
+
+      <!-- Step 3: Banking -->
+      <div class="page" id="banking-page">
+        <section id="banking-section" class="center">
+          <button class="back-page-button" data-target="cash-taken-page">Back: Cash Taken</button>
+          <h4>Step 3: Banking</h4>
+          <label for="bank-amount" class="bank-label">Amount to Bank:</label>
+          <span id="bank-amount" class="bank-label">R0.00</span>
+
+          <button id="calculate-bank">Calculate Banking Breakdown</button>
+          <h3>Banking Breakdown</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Denom</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody id="banking-rows"></tbody>
+          </table>
+          <button id="finalize-button">Finalize and Show Results</button>
+        </section>
+      </div>
+
+      <!-- Results Page -->
+      <div class="page" id="results-page">
+        <section id="results-section" class="center">
+         <button class="back-page-button" data-target="banking-page">Back: Cash Taken</button>
+          <h2>Final Results</h2>
+          <br>
+          <p>Total Cash Taken: R<span id="result-cash-taken">0.00</span></p>
+          <br>
+          <p>Total Float-In: R<span id="result-float">0.00</span></p>
+          <br>
+          <p>Amount Banked: R<span id="result-banked">0.00</span></p>
+          <br>
+          <p>Remaining Cash: R<span id="result-remaining">0.00</span></p>
+          <button class="next-page-button" data-target="float-count-page">Start Over</button>
+          <button id="clear-all-button">Clear All</button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 Manuel de Souza-Deacon. All rights reserved.</p>
+  </footer>
+
+  <script src="fj.js"></script>
+</body>
+
+</html>

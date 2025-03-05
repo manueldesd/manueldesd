@@ -1,0 +1,300 @@
+/* ====================================== */
+/*             Global Reset             */
+/* ====================================== */
+body {
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the page fills the viewport height */
+    margin: 0; /* Prevents unwanted spacing */
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    box-sizing: border-box; /* Ensures consistent element sizing */
+}
+
+
+
+  /* ---------------------- */
+  /*        Header          */
+  /* ---------------------- */
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+}
+.logo {
+    height: 50px;
+    margin-right: 20px;
+}
+.nav {
+    flex-grow: 1;
+}
+.nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+ 
+  /* ---------------------- */
+  /*      Main Content      */
+  /* ---------------------- */
+  .container {
+    flex: 1; /* This div grows to fill the available space */
+    width: 80%;
+    margin: 20px auto; /* Centers the container horizontally */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+  }
+  
+  
+  /* ---------------------- */
+  /*         Footer         */
+  /* ---------------------- */
+  footer {
+    background-color: white;
+    width: 100vw; /* Ensures it spans the full viewport width */
+    max-width: 100%; /* Prevents it from going beyond the screen */
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+    box-sizing: border-box; /* Ensures padding doesn't increase width */
+    overflow: hidden; /* Ensures no content spills out */
+  }
+  
+  /* ====================================== */
+  /*     Switches, Check Boxes & Pages    */
+  /* ====================================== */
+  
+  /* Results Section Centering */
+  #results-section {
+    text-align: center;
+  }
+  
+  /* Page Visibility */
+  .page {
+    display: none;
+  }
+  
+  .page.active {
+    display: block;
+  }
+  
+  /* Navigation Buttons Alignment */
+  .navigation {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+  }
+  
+  /* Toggle Slider (Custom Checkbox Style) */
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Custom Toggle Style for Checkboxes */
+  .toggle-container input[type="checkbox"] {
+    margin-top: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50px;
+    height: 30px;
+    background-color: rgba(221, 108, 108, 0.62);
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+  }
+  
+  /* Circle inside the toggle */
+  .toggle-container input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 245, 245, 0.67);
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Checked state for the toggle */
+  .toggle-container input[type="checkbox"]:checked {
+    background-color: rgba(109, 204, 221, 0.62);
+  }
+  
+  /* Move the inner circle when checked */
+  .toggle-container input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+  }
+  
+  /* Label beside the toggle */
+  .toggle-container label {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+  
+  /* Additional Switch Style (if used elsewhere) */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 3px;
+    right: 0;
+    bottom: 0;
+    width: 50px;
+    height: 30px;
+    background-color: #000;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 20px;
+  }
+  
+  .slider:before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 245, 245, 0.67);
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  input:checked + .slider {
+    background-color: #ffa200;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  /* Example class for positioning a screen label */
+  .screen {
+    margin-left: 30px;
+    font-size: 16px;
+  }
+  
+  /* ====================================== */
+  /*             Button Styling           */
+  /* ====================================== */
+  button {
+    width: 50%;
+    display: inline-block;
+    justify-content: center;
+    background-color: transparent;
+    border: dotted 1px black;
+    color: black;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  button:hover {
+    background-color: #03f4fc;
+    color: white;
+  }
+  
+  /* ====================================== */
+  /*       Float Count Section Toggle     */
+  /* ====================================== */
+  #float-count-section {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  
+  #float-count-section.collapsed {
+    max-height: 0;
+  }
+  
+  #float-count-section.expanded {
+    max-height: 1000px; /* Adjust this value as needed */
+  }
+  
+  /* For the small float toggle (if separate from the slider) */
+  #float-toggle {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  /* ====================================== */
+  /*          Table Styling               */
+  /* ====================================== */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  th, td {
+    width: 33.3%;
+    background-color: transparent;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: transparent;
+  }
+  
+  input {
+    width: 30%;
+    background-color: transparent;
+    border-bottom: #000 1px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+  }
+  
+  /* ====================================== */
+  /*          page 3 styling              */
+  /* ====================================== */
+
+  h4, .bank-label {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Ensures vertical centering */
+    border: none;
+    width: 100%;
+    padding: 10px;
+}
+
+.center {
+    display: flex; /* Changed from block to flex for centering */
+    flex-direction: column; /* Ensures content stacks vertically */
+    align-items: center; /* Centers child elements horizontally */
+    position: relative;
+}
