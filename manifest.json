@@ -1,17 +1,12 @@
 {
-  "name": "plutus",
-  "short_name": "plutus",
-  "description": "cashApp",
-  "start_url": "./",
+  "name": "Plutus",
+  "short_name": "Plutus",
+  "description": "A cash management tool",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "transparent",
-  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
   "icons": [
-    {
-      "src": "plutus.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
     {
       "src": "plutus.png",
       "sizes": "512x512",
