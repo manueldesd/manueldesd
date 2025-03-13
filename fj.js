@@ -326,3 +326,31 @@ if ("serviceWorker" in navigator) {
       .catch((error) => console.log("Service Worker registration failed", error));
   });
 }
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredPrompt = event;
+
+  // Show a custom install button if you want
+  const installButton = document.createElement("button");
+  installButton.textContent = "Install Plutus";
+  installButton.style.cssText = "position:fixed;bottom:10px;right:10px;padding:10px;";
+  document.body.appendChild(installButton);
+
+  installButton.addEventListener("click", () => {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choice) => {
+      if (choice.outcome === "accepted") {
+        console.log("User installed PWA");
+      } else {
+        console.log("User dismissed install");
+      }
+      installButton.remove();
+    });
+  });
+});
+
+window.addEventListener("appinstalled", () => {
+  console.log("Plutus installed");
+});
